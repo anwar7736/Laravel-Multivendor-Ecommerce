@@ -61,6 +61,7 @@ class WebController extends Controller
 
     public function home()
     {
+        // dd(session()->get('offline_cart'));
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
         $home_categories = Category::where('home_status', true)->priority()->get();
         $home_categories->map(function ($data) {

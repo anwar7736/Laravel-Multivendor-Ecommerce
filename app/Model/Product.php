@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+
+    protected $guarded = ['id'];
+    
     protected $casts = [
         'user_id' => 'integer',
         'brand_id' => 'integer',
@@ -164,6 +167,11 @@ class Product extends Model
 
     public function weight()
     {
-        return $this->belongsTo(ProductWeight::class, 'product_weight_id');
+        return $this->belongsTo(ProductWeight::class, 'weight_id')->withDefault();
+    }
+
+    public function variation_images()
+    {
+        return $this->hasMany(ProductVariationImage::class, 'product_id');
     }
 }

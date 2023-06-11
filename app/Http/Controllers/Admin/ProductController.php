@@ -13,6 +13,7 @@ use App\Model\Color;
 use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
+use App\Model\ProductWeight;
 use App\Model\Review;
 use App\Model\Translation;
 use App\Model\Wishlist;
@@ -33,7 +34,8 @@ class ProductController extends BaseController
         $br = Brand::orderBY('name', 'ASC')->get();
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
         $digital_product_setting = BusinessSetting::where('type', 'digital_product')->first()->value;
-        return view('admin-views.product.add-new', compact('cat', 'br', 'brand_setting', 'digital_product_setting'));
+        $weights = ProductWeight::all();
+        return view('admin-views.product.add-new', compact('cat', 'br', 'brand_setting', 'digital_product_setting', 'weights'));
     }
 
     public function featured_status(Request $request)
@@ -89,6 +91,7 @@ class ProductController extends BaseController
             'shipping_cost'        => 'required_if:product_type,==,physical|gt:-1',
             'code'                 => 'required|numeric|min:1|digits_between:6,20|unique:products',
             'minimum_order_qty'    => 'required|numeric|min:1',
+            'weight_id'            => 'required',
         ], [
             'images.required'                  => 'Product images is required!',
             'image.required'                   => 'Product thumbnail is required!',
@@ -102,6 +105,7 @@ class ProductController extends BaseController
             'digital_file_ready.mimes'         => 'Ready product upload must be a file of type: pdf, zip, jpg, jpeg, png, gif.',
             'digital_product_type.required_if' => 'Digital product type is required!',
             'shipping_cost.required_if'        => 'Shipping Cost is required!',
+            'weight_id.required'               => 'Please choose any weight!',
         ]);
 
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
@@ -169,6 +173,15 @@ class ProductController extends BaseController
         $p->digital_product_type = $request->product_type == 'digital' ? $request->digital_product_type : null;
         $p->product_type         = $request->product_type;
         $p->details              = $request->description[array_search('en', $request->lang)];
+        $p->short_desc           = $request->short_desc[array_search('en', $request->lang)];
+        $p->in_the_box           = $request->in_the_box;
+        $p->warranty_type        = $request->warranty_type;
+        $p->warranty             = $request->warranty;
+        $p->warranty_policy      = $request->warranty_policy;
+        $p->weight_id            = $request->weight_id;
+        $p->length               = $request->length;
+        $p->height               = $request->height;
+        $p->width                = $request->width;
 
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $p->colors = $request->product_type == 'physical' ? json_encode($request->colors) : json_encode([]);
@@ -572,8 +585,8 @@ class ProductController extends BaseController
         $br = Brand::orderBY('name', 'ASC')->get();
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
         $digital_product_setting = BusinessSetting::where('type', 'digital_product')->first()->value;
-
-        return view('admin-views.product.edit', compact('categories', 'br', 'product', 'product_category','brand_setting','digital_product_setting'));
+        $weights = ProductWeight::all();
+        return view('admin-views.product.edit', compact('categories', 'br', 'product', 'product_category','brand_setting','digital_product_setting', 'weights'));
     }
 
     public function update(Request $request, $id)
@@ -594,6 +607,7 @@ class ProductController extends BaseController
             'shipping_cost'         => 'required_if:product_type,==,physical|gt:-1',
             'code'                  => 'required|numeric|min:1|digits_between:6,20|unique:products,code,'.$product->id,
             'minimum_order_qty'     => 'required|numeric|min:1',
+            'weight_id'             => 'required',
         ], [
             'name.required'                     => 'Product name is required!',
             'category_id.required'              => 'category  is required!',
@@ -605,6 +619,7 @@ class ProductController extends BaseController
             'digital_file_ready.mimes'          => 'Ready product upload must be a file of type: pdf, zip, jpg, jpeg, png, gif.',
             'digital_product_type.required_if'  => 'Digital product type is required!',
             'shipping_cost.required_if'         => 'Shipping Cost is required!',
+            'weight_id.required'               => 'Please choose any weight!',
         ]);
 
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
@@ -678,7 +693,16 @@ class ProductController extends BaseController
         $product->minimum_order_qty     = $request->minimum_order_qty;
         $product->details               = $request->description[array_search('en', $request->lang)];
         $product_images                 = json_decode($product->images);
-
+        $product->short_desc            = $request->short_desc[array_search('en', $request->lang)];
+        $product->in_the_box            = $request->in_the_box;
+        $product->warranty_type         = $request->warranty_type;
+        $product->warranty              = $request->warranty;
+        $product->warranty_policy       = $request->warranty_policy;
+        $product->weight_id             = $request->weight_id;
+        $product->length                = $request->length;
+        $product->height                = $request->height;
+        $product->width                 = $request->width;
+        
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $product->colors = $request->product_type == 'physical' ? json_encode($request->colors) : json_encode([]);
         } else {

@@ -14,6 +14,7 @@ use App\Model\Color;
 use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
+use App\Model\ProductWeight;
 use App\Model\Review;
 use App\Model\Translation;
 use Brian2694\Toastr\Facades\Toastr;
@@ -35,7 +36,8 @@ class ProductController extends Controller
         $br = Brand::orderBY('name', 'ASC')->get();
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
         $digital_product_setting = BusinessSetting::where('type', 'digital_product')->first()->value;
-        return view('seller-views.product.add-new', compact('cat', 'br', 'brand_setting', 'digital_product_setting'));
+        $weights = ProductWeight::all();
+        return view('seller-views.product.add-new', compact('cat', 'br', 'brand_setting', 'digital_product_setting', 'weights'));
     }
 
     public function status_update(Request $request)
@@ -92,6 +94,7 @@ class ProductController extends Controller
             'shipping_cost'         => 'required_if:product_type,==,physical|gt:-1',
             'code'                  => 'required|numeric|min:1|digits_between:6,20|unique:products',
             'minimum_order_qty'     => 'required|numeric|min:1',
+            'weight_id'             => 'required',
 
         ], [
             'name.required'                     => 'Product name is required!',
@@ -107,6 +110,7 @@ class ProductController extends Controller
             'digital_file_ready.mimes'          => 'Ready product upload must be a file of type: pdf, zip, jpg, jpeg, png, gif.',
             'digital_product_type.required_if'  => 'Digital product type is required!',
             'shipping_cost.required_if'         => 'Shipping Cost is required!',
+            'weight_id.required'               => 'Please choose any weight!',
         ]);
 
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
@@ -175,6 +179,15 @@ class ProductController extends Controller
         $product->code                  = $request->code;
         $product->minimum_order_qty     = $request->minimum_order_qty;
         $product->details               = $request->description[array_search('en', $request->lang)];
+        $product->short_desc            = $request->short_desc[array_search('en', $request->lang)];
+        $product->in_the_box            = $request->in_the_box;
+        $product->warranty_type         = $request->warranty_type;
+        $product->warranty              = $request->warranty;
+        $product->warranty_policy       = $request->warranty_policy;
+        $product->weight_id             = $request->weight_id;
+        $product->length                = $request->length;
+        $product->height                = $request->height;
+        $product->width                 = $request->width;
 
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $product->colors = $request->product_type == 'physical' ? json_encode($request->colors) : json_encode([]);
@@ -299,7 +312,27 @@ class ProductController extends Controller
                     ));
                 }
             }
+
             Translation::insert($data);
+            $variation_images = [];
+            foreach($request->variation_code as $key => $item)
+            {
+                $image = "";
+                if(!empty($request->variation_image[$key]))
+                {
+                    $image = ImageManager::upload('product/variation', 'png', $request->variation_image[$key]);
+                }
+                $variation_images[] = [
+                    'variation' => $item,
+                    'image' => $image
+                ];
+            }
+
+            if(!empty($variation_images))
+            {
+                $product->variation_images()->createMany($variation_images);
+            }
+
             Toastr::success('Product added successfully!');
             return redirect()->route('seller.product.list');
         }
@@ -481,22 +514,25 @@ class ProductController extends Controller
         }
 
         $combinations = Helpers::combinations($options);
+
+        $colors = $request->colors;
+
         return response()->json([
-            'view' => view('admin-views.product.partials._sku_combinations', compact('combinations', 'unit_price', 'colors_active', 'product_name'))->render(),
+            'view' => view('admin-views.product.partials._sku_combinations', compact('colors','combinations', 'unit_price', 'colors_active', 'product_name'))->render(),
         ]);
     }
 
     public function edit($id)
     {
-        $product = Product::withoutGlobalScopes()->with('translations')->find($id);
+        $product = Product::withoutGlobalScopes()->with('translations', 'variation_images')->find($id);
         $product_category = json_decode($product->category_ids);
         $product->colors = json_decode($product->colors);
         $categories = Category::where(['parent_id' => 0])->get();
         $br = Brand::orderBY('name', 'ASC')->get();
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
         $digital_product_setting = BusinessSetting::where('type', 'digital_product')->first()->value;
-
-        return view('seller-views.product.edit', compact('categories', 'br', 'product', 'product_category', 'brand_setting', 'digital_product_setting'));
+        $weights = ProductWeight::all();
+        return view('seller-views.product.edit', compact('categories', 'br', 'product', 'product_category', 'brand_setting', 'digital_product_setting', 'weights'));
 
     }
 
@@ -517,6 +553,7 @@ class ProductController extends Controller
             'shipping_cost'         => 'required_if:product_type,==,physical|gt:-1',
             'code'                  => 'required|numeric|min:1|digits_between:6,20|unique:products,code,'.$product->id,
             'minimum_order_qty'     => 'required|numeric|min:1',
+            'weight_id'             => 'required',
         ], [
             'name.required'                     => 'Product name is required!',
             'category_id.required'              => 'Category is required!',
@@ -528,6 +565,7 @@ class ProductController extends Controller
             'digital_file_ready.mimes'          => 'Ready product upload must be a file of type: pdf, zip, jpg, jpeg, png, gif.',
             'digital_product_type.required_if'  => 'Digital product type is required!',
             'shipping_cost.required_if'         => 'Shipping Cost is required!',
+            'weight_id.required'               => 'Please choose any weight!',
         ]);
 
         $brand_setting = BusinessSetting::where('type', 'product_brand')->first()->value;
@@ -587,7 +625,15 @@ class ProductController extends Controller
         $product->unit                  = $request->product_type == 'physical' ? $request->unit : null;
         $product->digital_product_type  = $request->product_type == 'digital' ? $request->digital_product_type : null;
         $product->details               = $request->description[array_search('en', $request->lang)];
-
+        $product->short_desc            = $request->short_desc[array_search('en', $request->lang)];
+        $product->in_the_box            = $request->in_the_box;
+        $product->warranty_type         = $request->warranty_type;
+        $product->warranty              = $request->warranty;
+        $product->warranty_policy       = $request->warranty_policy;
+        $product->weight_id             = $request->weight_id;
+        $product->length                = $request->length;
+        $product->height                = $request->height;
+        $product->width                 = $request->width;
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $product->colors = $request->product_type == 'physical' ? json_encode($request->colors) : json_encode([]);
         } else {
@@ -735,6 +781,26 @@ class ProductController extends Controller
                         ['value' => $request->description[$index]]
                     );
                 }
+            }
+
+            $variation_images = [];
+            foreach($request->variation_code as $key => $item)
+            {
+                $image = "";
+                if(!empty($request->variation_image[$key]))
+                {
+                    
+                    $image = ImageManager::upload('product/variation', 'png', $request->variation_image[$key]);
+                }
+                $variation_images[] = [
+                    'variation' => $item,
+                    'image' => $image
+                ];
+            }
+
+            if(!empty($variation_images))
+            {
+                $product->variation_images()->createMany($variation_images);
             }
             Toastr::success('Product updated successfully.');
             return back();

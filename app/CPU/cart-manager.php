@@ -347,7 +347,10 @@ class CartManager
         $cart['thumbnail'] = $product->thumbnail;
         $cart['seller_id'] = ($product->added_by == 'admin') ? 1 : $product->user_id;
         $cart['seller_is'] = $product->added_by;
-        $cart['shipping_cost'] = $product->product_type == 'physical' ? CartManager::get_shipping_cost_for_product_category_wise($product,$request['quantity']):0;
+        // $cart['shipping_cost'] = $product->product_type == 'physical' ? CartManager::get_shipping_cost_for_product_category_wise($product,$request['quantity']):0;        
+        
+        $cart['shipping_cost'] = $product->product_type == 'physical' ? CartManager::calculate_product_shipping_cost($product, $request['quantity']) : 0;
+
         if ($product->added_by == 'seller') {
             $cart['shop_info'] = Shop::where(['seller_id' => $product->user_id])->first()->name;
         } else {
@@ -412,7 +415,9 @@ class CartManager
         if ($status) {
             $qty = $request->quantity;
             $cart['quantity'] = $request->quantity;
-            $cart['shipping_cost'] =  CartManager::get_shipping_cost_for_product_category_wise($product,$request->quantity);
+            // $cart['shipping_cost'] =  CartManager::get_shipping_cost_for_product_category_wise($product,$request->quantity);
+
+            $cart['shipping_cost'] = CartManager::calculate_product_shipping_cost($product, $request->quantity);
         }
 
         $cart->save();
@@ -422,6 +427,13 @@ class CartManager
             'qty' => $qty,
             'message' => $status == 1 ? translate('successfully_updated!') : translate('sorry_stock_is_limited')
         ];
+    }
+
+    public static function calculate_product_shipping_cost($product, $qty)
+    {
+        $weight_amount = $product->weight->amount;
+        $shipping_cost = $qty * $weight_amount;
+        return $shipping_cost;
     }
 
     public static function get_shipping_cost_for_product_category_wise($product,$qty)

@@ -56,9 +56,22 @@
                                     <input type="hidden" name="lang[]" value="{{ $lang }}">
                                     <div class="form-group pt-4">
                                         <label class="title-color"
+                                            for="{{ $lang }}_description">Short Description
+                                            ({{ strtoupper($lang) }})</label>
+                                        <textarea name="short_desc[]" class="editor textarea" cols="30" rows="2" required>{{ old('short_desc') }}</textarea>
+                                    </div>                                    
+                                    <div class="form-group pt-4">
+                                        <label class="title-color"
                                             for="{{ $lang }}_description">{{ \App\CPU\translate('description') }}
                                             ({{ strtoupper($lang) }})</label>
                                         <textarea name="description[]" class="editor textarea" cols="30" rows="10" required>{{ old('details') }}</textarea>
+                                    </div>                                    
+                                    <div class="form-group pt-4">
+                                        <label class="title-color"
+                                            for="{{ $lang }}_description">What's in the box
+                                            ({{ strtoupper($lang) }})</label>
+                                        <input type="text" name="in_the_box" placeholder="" class="form-control">
+
                                     </div>
                                 </div>
                             @endforeach
@@ -272,13 +285,13 @@
                                             placeholder="{{ \App\CPU\translate('minimum_order_quantity') }}" name="minimum_order_qty"
                                                class="form-control" required>
                                     </div>
-                                    <div class="col-md-4 mb-3 physical_product_show" id="shipping_cost">
+                                    <div class="col-md-4 mb-3 physical_product_show d-none" id="shipping_cost">
                                         <label class="title-color">{{ \App\CPU\translate('shipping_cost') }} </label>
                                         <input type="number" min="0" value="0" step="1"
                                             placeholder="{{ \App\CPU\translate('shipping_cost') }}" name="shipping_cost"
                                             class="form-control" required>
                                     </div>
-                                    <div class="col-md-4 mb-3 physical_product_show" id="shipping_cost_multy">
+                                    <div class="col-md-4 mb-3 physical_product_show d-none" id="shipping_cost_multy">
                                         <div class="border rounded px-3 py-2 min-h-40 d-flex justify-content-between gap-3">
                                             <label
                                                 class="title-color mb-0">{{ \App\CPU\translate('shipping_cost_multiply_with_quantity') }}
@@ -318,6 +331,71 @@
                                 <div class="col-lg-8 mb-4">
                                     <label class="title-color">{{ \App\CPU\translate('Meta_description') }}</label>
                                     <textarea rows="10" type="text" name="meta_description" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="card mt-2 mb-2 rest-part">
+                        <div class="card-header">
+                            <h5 class="mb-0">Service & Warranty</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-6 mb-4">
+                                    <label class="title-color">Warranty Type</label>
+                                    <select name="warranty_type" id="" class="form-control js-select2-custom">
+                                        <option value="">No Warranty</option>
+                                        <option value="brand">Brand Warranty</option>
+                                        <option value="seller">Seller Warranty</option>
+                                    </select>
+                                </div>                                
+                                <div class="col-md-6 mb-4">
+                                    <label class="title-color">Warranty Duration</label>
+                                    <select name="warranty" id="" class="form-control js-select2-custom">
+                                    <option value="">Please Select</option>
+                                    @foreach(\App\CPU\Helpers::warranty_months() as $month)
+                                    <option value="{{ $month }}m">{{ $month }} {{$month == 1 ? 'month' : 'months'}}</option>
+                                    @endforeach                                        
+                                    @foreach(\App\CPU\Helpers::warranty_years() as $year)
+                                    <option value="{{ $year }}y">{{ $year }} {{$year == 1 ? 'year' : 'years'}}</option>
+                                    @endforeach
+                                    <option value="lifetime">Lifetime</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-12 mb-4">
+                                    <label class="title-color">Warranty Policy</label>
+                                    <input type="text" name="warranty_policy" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="card mt-2 mb-2 rest-part">
+                        <div class="card-header">
+                            <h5 class="mb-0">Delivery</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-4 mb-4">
+                                    <label class="title-color">Choose Weight (for shipping charge dynamic)</label>
+                                    <select name="weight_id" id="" class="form-control js-select2-custom" required>
+                                    <option value="">Please Select</option>
+                                        @foreach($weights as $weight)
+                                            <option value="{{ $weight->id }}">{{$weight->title}} ({{$weight->amount}})</option>
+                                        @endforeach
+                                    </select>
+                                </div>                                
+                            </div>                                
+                            <label for="">Dimensions (cm)</label><br>
+                            <div class="row">                                    
+                                <div class="col-md-4">
+                                    <input type="number" step="0.1" class="form-control" name="length" placeholder="Length (cm)">
+                                </div>                                
+                                <div class="col-md-4">
+                                    <input type="number" step="0.1" class="form-control" name="height" placeholder="Height (cm)">
+                                </div>                                
+                                <div class="col-md-4">
+                                    <input type="number" step="0.1" class="form-control" name="width" placeholder="Width (cm)">
                                 </div>
                             </div>
                         </div>

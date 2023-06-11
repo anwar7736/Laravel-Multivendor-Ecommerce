@@ -43,4 +43,34 @@
     @endforeach
     </tbody>
 </table>
+@if(count($items) > 0)
+<hr>
+<h4>Choose Variation Image</h4>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Variation</th>
+			<th>Choose Image</th>
+			<th>Preview Image</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach($items as $key => $item)
+		 <tr>
+			<td>
+				{{ \App\Model\Color::where('code', $item->variation)->first()->name }}
+			</td>
+			<td>
+				<input type="file" name="variation_image[]" class="form-control">
+				<input type="hidden" name="variation_old_image[]" value="{{ $item->image }}">
+				<input type="hidden" name="variation_code[]" value="{{ $item->variation }}">
+			</td>
+			<td>
+				<img src="{{asset('storage/app/public/product/variation')}}/{{$item->image}}" height="100" width="200">
+			</td>
+		 </tr>
+		@endforeach
+	</tbody>
+</table>
+@endif
 

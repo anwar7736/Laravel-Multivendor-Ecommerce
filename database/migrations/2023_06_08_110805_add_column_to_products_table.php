@@ -13,9 +13,18 @@ class AddColumnToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('products', function (Blueprint $table) {
+        //     $table->text('short_desc')->nullable();
+        //     $table->text('in_the_box')->nullable();
+        //     $table->string('warranty_type')->nullable();
+        //     $table->string('warranty')->nullable();
+        //     $table->string('warranty_policy')->nullable();
+        //     $table->integer('weight_id')->nullable();
+        //     $table->decimal('length', 8, 2)->nullable()->default(0);
+        //     $table->decimal('height', 8, 2)->nullable()->default(0);
+        //     $table->decimal('width', 8, 2)->nullable()->default(0);
+        //     $table->json('variation_images')->nullable();
+        // });
     }
 
     /**
@@ -25,8 +34,8 @@ class AddColumnToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('products', function (Blueprint $table) {
+        //     //
+        // });
     }
 }

@@ -721,6 +721,18 @@ class Helpers
         $mpdf->WriteHTML($mpdf_view);
         $mpdf->Output($file_prefix . $file_postfix . '.pdf', 'D');
     }
+
+    public static function warranty_months()
+    {
+        $months = [1,2,3,4,5,6,7,8,9,10,11,18];
+        return $months;
+    }    
+    
+    public static function warranty_years()
+    {
+        $years = [1,2,3,4,5,6,7,8,9,10,11,15,25];
+        return $years;
+    }
 }
 
 

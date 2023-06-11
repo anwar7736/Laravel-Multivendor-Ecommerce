@@ -1,5 +1,5 @@
 @if(count($combinations[0]) > 0)
-	<table class="table table-bordered physical_product_show">
+	<table class="table table-bordered table-hover physical_product_show">
 		<thead>
 			<tr>
 				<td class="text-center">
@@ -64,7 +64,35 @@
 @endforeach
 	</tbody>
 </table>
-
+@if(count($colors) > 0)
+<hr>
+<h4>Choose Variation Image</h4>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Variation</th>
+			<th>Choose Image</th>
+			<th>Preview Image</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach($colors as $key => $code)
+		 <tr>
+			<td>
+				{{ \App\Model\Color::where('code', $code)->first()->name }}
+			</td>
+			<td>
+				<input type="file" name="variation_image[]" class="form-control">
+				<input type="hidden" name="variation_code[]" value="{{ $code }}">
+			</td>
+			<td>
+				<img src="{{ asset('public/assets/back-end/img/400x400/img2.jpg') }}" height="100" width="200">
+			</td>
+		 </tr>
+		@endforeach
+	</tbody>
+</table>
+@endif
 <script>
 	update_qty();
 	function update_qty()

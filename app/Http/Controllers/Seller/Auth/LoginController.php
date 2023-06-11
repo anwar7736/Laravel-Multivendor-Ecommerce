@@ -54,31 +54,32 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
         //recaptcha validation
-        $recaptcha = Helpers::get_business_settings('recaptcha');
-        if (isset($recaptcha) && $recaptcha['status'] == 1) {
-            try {
-                $request->validate([
-                    'g-recaptcha-response' => [
-                        function ($attribute, $value, $fail) {
-                            $secret_key = Helpers::get_business_settings('recaptcha')['secret_key'];
-                            $response = $value;
-                            $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $response;
-                            $response = \file_get_contents($url);
-                            $response = json_decode($response);
-                            if (!$response->success) {
-                                $fail(\App\CPU\translate('ReCAPTCHA Failed'));
-                            }
-                        },
-                    ],
-                ]);
-            } catch (\Exception $exception) {}
-        } else {
-            if (strtolower($request->default_captcha_value) != strtolower(Session('default_captcha_code'))) {
-                Session::forget('default_captcha_code');
-                return back()->withErrors(\App\CPU\translate('Captcha Failed'));
-            }
-        }
+        // $recaptcha = Helpers::get_business_settings('recaptcha');
+        // if (isset($recaptcha) && $recaptcha['status'] == 1) {
+        //     try {
+        //         $request->validate([
+        //             'g-recaptcha-response' => [
+        //                 function ($attribute, $value, $fail) {
+        //                     $secret_key = Helpers::get_business_settings('recaptcha')['secret_key'];
+        //                     $response = $value;
+        //                     $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $response;
+        //                     $response = \file_get_contents($url);
+        //                     $response = json_decode($response);
+        //                     if (!$response->success) {
+        //                         $fail(\App\CPU\translate('ReCAPTCHA Failed'));
+        //                     }
+        //                 },
+        //             ],
+        //         ]);
+        //     } catch (\Exception $exception) {}
+        // } else {
+        //     if (strtolower($request->default_captcha_value) != strtolower(Session('default_captcha_code'))) {
+        //         Session::forget('default_captcha_code');
+        //         return back()->withErrors(\App\CPU\translate('Captcha Failed'));
+        //     }
+        // }
 
+        //Seller Login
         $se = Seller::where(['email' => $request['email']])->first(['status']);
 
         if (isset($se) && $se['status'] == 'approved' && auth('seller')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {

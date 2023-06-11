@@ -2394,4 +2394,9 @@
   'Product Weight List' => 'Product Weight List',
   'Weight Title' => 'Weight Title',
   'Weight Amount' => 'Weight Amount',
+  'General_Info' => 'General Info',
+  'Meta_Title' => 'Meta Title',
+  'Meta_Description' => 'Meta Description',
+  'Meta_Image' => 'Meta Image',
+  'optional  please provide embed link not direct link.' => 'Optional  please provide embed link not direct link.',
 );
