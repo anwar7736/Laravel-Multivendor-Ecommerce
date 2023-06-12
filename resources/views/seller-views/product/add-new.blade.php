@@ -50,8 +50,11 @@
                                             ({{ strtoupper($lang) }})
                                         </label>
                                         <input type="text" {{ $lang == $default_lang ? 'required' : '' }} name="name[]"
-                                            id="{{ $lang }}_name" class="form-control" placeholder="New Product"
+                                            id="{{ $lang }}_name" class="form-control product-title" placeholder="New Product"
                                             required>
+                                    </div>
+                                    <div class="form-group d-none category_by_product p-3" style="background:#ecf3ff; border-radius:10px">
+
                                     </div>
                                     <input type="hidden" name="lang[]" value="{{ $lang }}">
                                     <div class="form-group pt-4">
@@ -585,6 +588,12 @@
             });
         }
 
+        $(document).click('label.cat-title-label', function(){
+            let id = $(this).find('input.cat-title').val();
+            $(document).find('select[name="category_id"').val(id);
+            getRequest('{{ url('/') }}/seller/product/get-categories?parent_id='+id,'sub-category-select','select');
+        });
+
         $('input[name="colors_active"]').on('change', function() {
             if (!$('input[name="colors_active"]').is(':checked')) {
                 $('#colors-selector').prop('disabled', true);
@@ -744,6 +753,31 @@
 
             $('#digital_product_type').change(function(){
                 digital_product_type();
+            });
+
+            $(document).on('blur', 'input.product-title', function(){
+                let query = $(this).val();
+                $.ajax({
+                    url: '{{ route('seller.product.category_by_product') }}',
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {query:query},
+                    success:function(res)
+                    {
+                        if(res.success)
+                        {
+                            $(document).find('div.category_by_product').html(res.html).removeClass('d-none');
+                        }
+
+                        else {
+                            $(document).find('div.category_by_product').html('').addClass('d-none');
+                        }
+                    }
+
+                })
+                
             });
         });
 

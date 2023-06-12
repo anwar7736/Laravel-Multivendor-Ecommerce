@@ -62,7 +62,7 @@
 			</td>
 			<td>
 				<input type="file" name="variation_image[]" class="form-control">
-				<input type="hidden" name="variation_old_image[]" value="{{ $item->image }}">
+				<input type="hidden" name="line_id[]" value="{{ $item->id }}">
 				<input type="hidden" name="variation_code[]" value="{{ $item->variation }}">
 			</td>
 			<td>

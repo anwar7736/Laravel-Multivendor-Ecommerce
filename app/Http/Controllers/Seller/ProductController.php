@@ -15,6 +15,7 @@ use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\ProductWeight;
+use App\Model\ProductVariationImage;
 use App\Model\Review;
 use App\Model\Translation;
 use Brian2694\Toastr\Facades\Toastr;
@@ -318,9 +319,9 @@ class ProductController extends Controller
             foreach($request->variation_code as $key => $item)
             {
                 $image = "";
-                if(!empty($request->variation_image[$key]))
+                if(isset($request->variation_image[$key]))
                 {
-                    $image = ImageManager::upload('product/variation', 'png', $request->variation_image[$key]);
+                    $image = ImageManager::upload('product/variation/', 'png', $request->variation_image[$key]);
                 }
                 $variation_images[] = [
                     'variation' => $item,
@@ -538,7 +539,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Product::with('variation_images')->find($id);
         $validator = Validator::make($request->all(), [
             'name'                  => 'required',
             'category_id'           => 'required',
@@ -784,24 +785,59 @@ class ProductController extends Controller
             }
 
             $variation_images = [];
-            foreach($request->variation_code as $key => $item)
+            if(isset($request->line_id))
             {
-                $image = "";
-                if(!empty($request->variation_image[$key]))
+                $delete_lines = ProductVariationImage::where('product_id', $id)
+                                        ->whereNotIn('id', $request->line_id)
+                                        ->get();
+
+                if($delete_lines->count())
                 {
-                    
-                    $image = ImageManager::upload('product/variation', 'png', $request->variation_image[$key]);
+                    foreach($delete_lines as $key => $line)
+                    {
+                        ImageManager::delete('product/variation/'.$line->image);
+                        $line->delete();
+                    }
                 }
-                $variation_images[] = [
-                    'variation' => $item,
-                    'image' => $image
-                ];
+
+                // else
+                // {
+                //     foreach($product->variation_images as $key => $line)
+                //     {
+                //         ImageManager::delete('product/variation/'.$line->image);
+                //         $line->delete();
+                //     }
+                // }
+            }
+
+            if(isset($request->variation_image))
+            {
+                foreach($request->variation_image as $key => $image)
+                {
+                    if(isset($request->line_id[$key]))
+                    {                        
+                        $line = ProductVariationImage::find($request->line_id[$key]);
+                        ImageManager::delete('product/variation/'.$line->image);
+                        $image_name = ImageManager::upload('product/variation/', 'png', $image);
+                        $line->update(['image'=>$image_name]);
+
+                    }
+                    else{
+                        $image_name = ImageManager::upload('product/variation/', 'png', $image);
+                        $variation_images[] = [
+                            'variation' => $request->variation_code[$key],
+                            'image' => $image_name
+                        ];
+                    }
+                }
+
             }
 
             if(!empty($variation_images))
             {
                 $product->variation_images()->createMany($variation_images);
             }
+            
             Toastr::success('Product updated successfully.');
             return back();
         }
@@ -837,12 +873,19 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('variation_images')->find($id);
         Cart::where('product_id', $product->id)->delete();
         foreach (json_decode($product['images'], true) as $image) {
             ImageManager::delete('/product/' . $image);
         }
         ImageManager::delete('/product/thumbnail/' . $product['thumbnail']);
+
+        foreach($product->variation_images as $key => $line)
+        {
+            ImageManager::delete('product/variation/'.$line->image);
+            $line->delete();
+        }
+
         $product->delete();
         FlashDealProduct::where(['product_id' => $id])->delete();
         DealOfTheDay::where(['product_id' => $id])->delete();
@@ -966,6 +1009,34 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $limit =  $request->limit ?? 4;
         return view('seller-views.product.barcode', compact('product', 'limit'));
+    }
+
+    public function categoryByProduct(Request $request)
+    {
+        $query = $request->get('query');
+        $categories = Category::where('parent_id', 0)->where('slug', 'like', '%'.$query.'%')->get();
+        
+        $html = "<h5>Recommended Categories</h5>";                               
+        foreach($categories as $key => $category)
+        {
+            $html .= "<label class='cat-title-label'><input class='cat-title' type='radio' name='category' value='".$category->id."'> 
+                          ".$category->name."
+                      </label>
+                      <br>";
+        }
+
+        if(count($categories) > 0)
+        {
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+            ]);
+        }
+
+            return response()->json([
+                'success' => false,
+            ]);
+
     }
 
 }

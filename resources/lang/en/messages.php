@@ -2399,4 +2399,6 @@
   'Meta_Description' => 'Meta Description',
   'Meta_Image' => 'Meta Image',
   'optional  please provide embed link not direct link.' => 'Optional  please provide embed link not direct link.',
+  'Sub' => 'Sub',
+  'Select_main_category' => 'Select main category',
 );

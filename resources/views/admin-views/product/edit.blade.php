@@ -324,7 +324,10 @@
                                     </select>
                                 </div>
                                 <div class="col-12 sku_combination table-responsive form-group" id="sku_combination">
-                                    @include('admin-views.product.partials._edit_sku_combinations',['combinations'=>json_decode($product['variation'],true)])
+                                    @include('admin-views.product.partials._edit_sku_combinations',[
+                                        'combinations'=>json_decode($product['variation'],true),
+                                        'items' => $product->variation_images,
+                                        ])
                                 </div>
                                 <div class="col-md-4 form-group physical_product_show" id="quantity">
                                     <label class="title-color">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>

@@ -67,6 +67,9 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
             Route::get('bulk-import', 'ProductController@bulk_import_index')->name('bulk-import');
             Route::post('bulk-import', 'ProductController@bulk_import_data');
             Route::get('bulk-export', 'ProductController@bulk_export_data')->name('bulk-export');
+
+            //category by product title
+            Route::post('category-by-product', 'ProductController@categoryByProduct')->name('category_by_product');
         });
 
         Route::group(['prefix' => 'report', 'as' => 'report.'], function () {

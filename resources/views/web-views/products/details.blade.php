@@ -141,7 +141,20 @@
                         <div class="col-lg-5 col-md-4 col-12">
                             <div class="cz-product-gallery">
                                 <div class="cz-preview">
-                                    @if($product->images!=null)
+                                @if($product->variation_images->count() > 0)
+                                        @foreach ($product->variation_images as $key => $item)
+                                            <div
+                                                class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}"
+                                                id="image{{$key}}">
+                                                <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
+                                                    onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                    src="{{asset("storage/app/public/product/variation/$item->image")}}"
+                                                    data-zoom="{{asset("storage/app/public/product/variation/$item->image")}}"
+                                                    alt="Product image" width="">
+                                                <div class="cz-image-zoom-pane"></div>
+                                            </div>
+                                        @endforeach                               
+                                    @elseif($product->images!=null)
                                         @foreach (json_decode($product->images) as $key => $photo)
                                             <div
                                                 class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}"
@@ -159,19 +172,32 @@
                                 <div class="cz">
                                     <div class="table-responsive __max-h-515px" data-simplebar>
                                         <div class="d-flex">
-                                            @if($product->images!=null)
-                                                @foreach (json_decode($product->images) as $key => $photo)
-                                                    <div class="cz-thumblist">
-                                                        <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center "
-                                                        href="#image{{$key}}">
-                                                            <img
-                                                                onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                                src="{{asset("storage/app/public/product/$photo")}}"
-                                                                alt="Product thumb">
-                                                        </a>
-                                                    </div>
-                                                @endforeach
-                                            @endif
+                                        @if($product->variation_images->count() > 0)
+                                            @foreach ($product->variation_images as $key => $item)
+                                                <div class="cz-thumblist">
+                                                    <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center "
+                                                    href="#image{{$key}}">
+                                                        <img
+                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                            src="{{asset("storage/app/public/product/variation/$item->image")}}"
+                                                            
+                                                            alt="Product thumb">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @elseif($product->images!=null)
+                                            @foreach (json_decode($product->images) as $key => $photo)
+                                                <div class="cz-thumblist">
+                                                    <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center "
+                                                    href="#image{{$key}}">
+                                                        <img
+                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                            src="{{asset("storage/app/public/product/$photo")}}"
+                                                            alt="Product thumb">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +261,7 @@
                                                                         id="{{ $product->id }}-color-{{ $key }}"
                                                                         name="color" value="{{ $color }}"
                                                                         @if($key == 0) checked @endif>
-                                                                    <label style="background: {{ $color }};"
+                                                                    <label onclick="focus_preview_image_by_color('{{$key}}')" style="background: {{ $color }};"
                                                                         for="{{ $product->id }}-color-{{ $key }}"
                                                                         data-toggle="tooltip">
                                                                     <span class="outline"></span></label>
@@ -877,7 +903,9 @@
     <script>
         $( document ).ready(function() {
             load_review();
+           
         });
+        
         let load_review_count = 1;
         function load_review()
         {
@@ -906,6 +934,12 @@
                     }
                 });
                 load_review_count++
+        }
+
+        function focus_preview_image_by_color(key)
+        {
+            
+           $('a[href="#image'+key+'"]')[0].click();
         }
     </script>
 
@@ -953,6 +987,7 @@
             $('#seller_details').animate({'height': '114px'});
             $('#msg-option').css('display', 'none');
         });
+
     </script>
 
     <script type="text/javascript"
