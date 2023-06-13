@@ -65,7 +65,7 @@
                                         <input type="text" {{$lang == 'en'? 'required':''}} name="name[]"
                                                id="{{$lang}}_name"
                                                value="{{$translate[$lang]['name']??$product['name']}}"
-                                               class="form-control" placeholder="New Product" required>
+                                               class="form-control product-title" placeholder="New Product" required>
                                     </div>
                                     <div class="form-group pt-4">
                                         <label class="title-color"
@@ -760,6 +760,8 @@
                 if (!colorCode) return state.text;
                 return "<span class='color-preview' style='background-color:" + colorCode + ";'></span>" + state.text;
             }
+
+            
         });
     </script>
 

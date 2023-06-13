@@ -92,6 +92,13 @@
                                                    for="customFileEg1">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
                                         </div>
                                     </div>
+                                    <div class="from_part_2 mt-3">
+                                        <label class="title-color">Keyword</label>
+                                        <div class="custom-file text-left">
+                                            <input type="text" name="keyword"
+                                                class="form-control" value="{{ $category['keyword'] }}" placeholder="keyword1,keyword2,keyword3">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 mt-5 mt-lg-0 from_part_2">
                                     <div class="form-group">

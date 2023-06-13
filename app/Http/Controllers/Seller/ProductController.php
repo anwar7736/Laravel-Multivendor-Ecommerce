@@ -1014,7 +1014,9 @@ class ProductController extends Controller
     public function categoryByProduct(Request $request)
     {
         $query = $request->get('query');
-        $categories = Category::where('parent_id', 0)->where('slug', 'like', '%'.$query.'%')->get();
+        $categories = Category::where('slug', 'like', '%'.$query.'%')
+                        ->orWhere('keyword', 'like', '%'.$query.'%')
+                        ->get();
         
         $html = "<h5>Recommended Categories</h5>";                               
         foreach($categories as $key => $category)

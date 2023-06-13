@@ -53,6 +53,7 @@ class CategoryController extends Controller
         $category->parent_id = 0;
         $category->position = 0;
         $category->priority = $request->priority;
+        $category->keyword = $request->keyword;
         $category->save();
 
         $data = [];
@@ -90,6 +91,7 @@ class CategoryController extends Controller
             $category->icon = ImageManager::update('category/', $category->icon, 'png', $request->file('image'));
         }
         $category->priority = $request->priority;
+        $category->keyword = $request->keyword;
         $category->save();
 
         foreach ($request->lang as $index => $key) {

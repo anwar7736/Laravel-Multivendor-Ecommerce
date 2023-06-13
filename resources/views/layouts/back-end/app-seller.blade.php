@@ -110,6 +110,7 @@
     <!-- JS Plugins Init. -->
     <script>
         $(document).on('ready', function() {
+ 
             // ONLY DEV
             // =======================================================
             if (window.localStorage.getItem('hs-builder-popover') === null) {
