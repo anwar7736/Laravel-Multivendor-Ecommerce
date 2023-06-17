@@ -733,6 +733,16 @@
                                     {{\App\CPU\translate('Customer')}} {{\App\CPU\translate('Reviews')}}
                                 </span>
                                     </a>
+                                </li>                                
+                                <li class="nav-item {{Request::is('admin/reviews/create-fake-review*')?'active':''}}">
+                                    <a class="nav-link"
+                                       href="{{ route('admin.reviews.create') }}"
+                                       title="Add Fake Review">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        Add Fake Review
+                                </span>
+                                    </a>
                                 </li>
                                 <li class="nav-item {{Request::is('admin/customer/wallet/report')?'active':''}}">
                                     <a class="nav-link" title="{{\App\CPU\translate('wallet')}}"

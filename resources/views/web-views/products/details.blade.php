@@ -408,7 +408,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @php($reviews_of_product = App\Model\Review::where('product_id',$product->id)->paginate(2))
+                                                @php($reviews_of_product = App\Model\Review::where('product_id',$product->id)->whereNull('parent_id')->paginate(2))
                                                 <!-- Reviews tab-->
                                                 <div class="tab-pane fade" id="reviews" role="tabpanel">
                                                     <div class="row pt-2 pb-3">

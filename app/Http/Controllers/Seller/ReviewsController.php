@@ -112,5 +112,22 @@ class ReviewsController extends Controller
         $review->save();
         Toastr::success('Review status updated!');
         return back();
+    }    
+    
+    public function storeReviewReply(Request $request)
+    {
+        $review = Review::find($request->id);
+
+        Review::create([
+            'product_id' => $review->product_id,
+            'customer_id' => $review->customer_id,
+            'comment' => $request->comment,
+            'parent_id' => $review->id,
+            'reply_type' => $request->reply_type,
+            'seller_id' => auth('seller')->id(),
+        ]);
+
+        Toastr::success('Review reply has been added!');
+        return back();
     }
 }

@@ -15,10 +15,15 @@
 
         <div class="card card-body">
             <div class="row border-bottom pb-3 align-items-center mb-20">
-                <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
+            <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
                     <h5 class="text-capitalize d-flex gap-2 align-items-center">
                         {{ \App\CPU\translate('review_table') }}
                         <span class="badge badge-soft-dark radius-50 fz-12">{{ $reviews->total() }}</span>
+                    </h5>
+                </div>                
+                <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
+                    <h5 class="text-capitalize d-flex gap-2 align-items-center">
+                        <a href="{{ route('admin.reviews.create') }}" class="btn btn-success">Add Fake Review</a>
                     </h5>
                 </div>
                 <div class="col-sm-8 col-md-6 col-lg-4">
@@ -146,6 +151,7 @@
                             <th>{{ \App\CPU\translate('Review') }}</th>
                             <th>{{ \App\CPU\translate('date') }}</th>
                             <th class="text-center">{{ \App\CPU\translate('status') }}</th>
+                            <th class="text-center">{{\App\CPU\translate('Action')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -199,6 +205,18 @@
                                                 class="switcher_input" {{ $review->status ? 'checked' : '' }}>
                                             <span class="switcher_control"></span>
                                         </label>
+                                    </td>                                    
+                                    <td>
+                                        <a class="btn btn-outline-danger btn-sm square-btn" href="javascript:"
+                                            title="{{\App\CPU\translate('Delete')}}"
+                                            onclick="form_alert('product-{{$review['id']}}','Want to delete this review ?')">
+                                            <i class="tio-delete"></i>
+                                        </a>
+                                        <form action="{{route('admin.reviews.delete',[$review['id']])}}"
+                                            method="post" id="product-{{$review['id']}}">
+                                            @csrf 
+                                            @method('delete')
+                                        </form>
                                     </td>
 
                                 </tr>

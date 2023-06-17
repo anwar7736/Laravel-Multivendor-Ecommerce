@@ -146,6 +146,7 @@
                             <th>{{ \App\CPU\translate('Review') }}</th>
                             <th>{{ \App\CPU\translate('date') }}</th>
                             <th class="text-center">{{ \App\CPU\translate('status') }}</th>
+                            <th class="text-center">{{ \App\CPU\translate('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -200,7 +201,12 @@
                                                 class="toggle-switch-input" {{ $review->status ? 'checked' : '' }}>
                                             <span class="switcher_control"></span>
                                         </label>
+                                    </td>                                    
+                                    @if($review->parent_id == NULL)
+                                    <td>
+                                        <button data-id="{{ $review->id }}" class="btn btn-success btn-sm add_review_reply">Reply</button>
                                     </td>
+                                    @endif
 
                                 </tr>
                             @endif
@@ -219,6 +225,45 @@
             <!-- End Pagination -->
         </div>
     </div>
+<div class="modal fade" id="reply-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content"
+                     style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Review Reply</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{route('seller.reviews.reply')}}" method="POST">
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="id" id="review_id" value="">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Choose Reply Type
+                                    :</label>
+                                <select name="reply_type" id="reply_type" class="form-control" required>
+                                    <option value="">Please Choose Any Type</option>
+                                    <option value="reply">Reply</option>
+                                    <option value="claim">Claim</option>
+                                </select>
+                            </div>                            
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Add Reply Note
+                                    :</label>
+                                <textarea name="comment" id="comment" required class="form-control" rows="5" placeholder="Write something..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{\App\CPU\translate('Close')}}</button>
+                                <button type="submit"
+                                class="btn btn--primary">{{\App\CPU\translate('Add')}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 @endsection
 @push('script_2')
     <script>
@@ -244,6 +289,14 @@
                 }
             }
 
-        })
+        });
+
+        $(document).on('click', 'button.add_review_reply', function(e){
+            let id = $(this).attr('data-id');
+            $(document).find('#reply_type').val('');
+            $(document).find('#comment').val('');
+            $(document).find('input#review_id').val(id);
+            $(document).find('div#reply-modal').modal('show');
+        });
     </script>
 @endpush

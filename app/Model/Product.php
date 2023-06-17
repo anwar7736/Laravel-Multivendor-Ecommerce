@@ -82,7 +82,7 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'product_id');
+        return $this->hasMany(Review::class, 'product_id')->whereNull('parent_id');
     }
 
     public function brand()

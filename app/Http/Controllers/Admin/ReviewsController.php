@@ -6,6 +6,7 @@ use App\User;
 use App\CPU\Helpers;
 use App\Model\Review;
 use App\Model\Product;
+use App\CPU\ImageManager;
 use App\CPU\ProductManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -59,6 +60,52 @@ class ReviewsController extends Controller
 
         return view('admin-views.reviews.list', compact('reviews', 'search', 'products', 'customers', 'from', 'to', 'customer_id', 'product_id', 'status'));
     }
+
+    public function create()
+    {
+        $customers = User::where('is_active', 1)
+                        ->select(['id', 'name', 'f_name', 'l_name'])
+                        ->get();
+        
+        $products  = Product::where('status', 1)
+                            ->select(['id', 'name'])
+                            ->get();
+        // dd(
+        //     $customers,
+        //     $products
+        // );
+        return view('admin-views.reviews.create', compact('customers', 'products'));
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $image_array = [];
+        if ($request->has('fileUpload')) {
+            foreach ($request->file('fileUpload') as $image) {
+                array_push($image_array, ImageManager::upload('review/', 'png', $image));
+            }
+        }
+
+        Review::updateOrCreate(
+            [
+                'delivery_man_id' => $request->delivery_man_id,
+                'customer_id' => $request->customer_id,
+                'product_id' => $request->product_id
+            ],
+            [
+                'customer_id' => $request->customer_id,
+                'product_id' => $request->product_id,
+                'comment' => $request->comment,
+                'rating' => $request->rating,
+                'attachment' => json_encode($image_array),
+            ]
+        );
+
+        Toastr::success('Fake review has been created!');
+        return redirect()->route('admin.reviews.list');
+    }
+
     public function export(Request $request)
     {
 
@@ -102,6 +149,19 @@ class ReviewsController extends Controller
         $review->status = $request->status;
         $review->save();
         Toastr::success('Review status updated!');
+        return back();
+    }    
+    
+    public function delete(Request $request)
+    {
+        $review = Review::find($request->id);
+        foreach(json_decode($review->attachment) as $img)
+        {
+            ImageManager::delete('review/'.$img);
+        }
+
+        $review->delete();
+        Toastr::success('Review has been deleted!');
         return back();
     }
 }

@@ -26,6 +26,9 @@ class Review extends Model
         'attachment',
         'rating',
         'status',
+        'parent_id',
+        'reply_type',
+        'seller_id',
     ];
 
     public function scopeActive($query)
@@ -69,5 +72,15 @@ class Review extends Model
             }
 
         });
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Review::class, 'parent_id', 'id')->where('reply_type', 'reply');
+    }
+
+    public function seller()
+    {
+        return $this->hasOne(Seller::class, 'seller_id');
     }
 }

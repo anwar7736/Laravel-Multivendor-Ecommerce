@@ -616,6 +616,7 @@ class WebController extends Controller
 
             return view('web-views.products.details', compact('product', 'countWishlist', 'countOrder', 'relatedProducts', 'deal_of_the_day'));
         }
+        
 
         Toastr::error(translate('not_found'));
         return back();
@@ -1159,8 +1160,11 @@ class WebController extends Controller
     public function review_list_product(Request $request)
     {
 
-        $productReviews =Review::where('product_id',$request->product_id)->latest()->paginate(2, ['*'], 'page', $request->offset);
-
+        $productReviews =Review::with('replies')
+                                ->where('product_id',$request->product_id)
+                                ->whereNull('parent_id')
+                                ->latest()
+                                ->paginate(2, ['*'], 'page', $request->offset);
 
         return response()->json([
             'productReview'=> view('web-views.partials.product-reviews',compact('productReviews'))->render(),
