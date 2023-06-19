@@ -186,4 +186,14 @@ class ChattingController extends Controller
         return response()->json(['message' => $message, 'time' => $time]);
     }
 
+    public function viewContact()
+    {
+        return view('seller-views.contact.contact_us');
+    }
+
+    public function contactStore(Request $request)
+    {
+        dd($request->all());
+    }
+
 }

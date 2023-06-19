@@ -55,19 +55,14 @@
                             <span class="font-size-sm mb-0 text-body" style="font-weight: 700;font-size: 12px;">{{isset($shop)?$shop->name:'not exist'}}</span>
                             <div class="d-flex ">
 
-                                <div class=" {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">
-
-                                            <i class="sr-star czi-star-filled active"></i>
-
-                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <div class="col-md-7">
                     <p class="mb-3 text-body __text-sm" style="word-wrap:break-word;">{{$reply->comment}}</p>
                 </div>
                 <div class="col-md-2 text-body">
-                    <span style="float: right;font-weight: 400;font-size: 13px;">{{$reply->updated_at->format('M-d-Y')}}</span>
+                    <span style="float: right;font-weight: 400;font-size: 13px;">{{$reply->updated_at->diffForHumans()}}</span>
                 </div>
             </div>
             @endforeach

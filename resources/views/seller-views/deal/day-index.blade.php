@@ -1,4 +1,4 @@
-@extends('layouts.back-end.app')
+@extends('layouts.back-end.app-seller')
 
 @section('title', 'Free Shipping')
 
@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.deal.day')}}" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" method="post">
+                    <form action="{{route('seller.deal.day')}}" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" method="post">
                         @csrf
                         @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                         @php($language = $language->value ?? null)
@@ -61,7 +61,7 @@
                                         <option value="" disabled selected>
                                             {{ \App\CPU\translate('Select Product')}}
                                         </option>
-                                        @foreach (\App\Model\Product::orderBy('name', 'asc')->get() as $key => $product)
+                                        @foreach ($seller_products as $key => $product)
                                             <option value="{{ $product->id }}">
                                                 {{$product['name']}}
                                             </option>
@@ -132,16 +132,18 @@
                                 <td>{{isset($deal->product)==true?$deal->product->name:'\App\CPU\translate("not selected")'}}</td>
 
                                 <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher_input status"
-                                                id="{{$deal['id']}}" {{$deal->status == 1?'checked':''}}>
-                                        <span class="switcher_control"></span>
+                                    <label class="">
+                                            @if($deal->status == 1)
+                                            <span class="badge badge-soft-success">Yes </span>
+                                            @else
+                                            <span class="badge badge-soft-danger">No</span>
+                                            @endif
                                     </label>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-10">
                                         <a  title="{{ trans ('Edit')}}"
-                                            href="{{route('admin.deal.day-update',[$deal['id']])}}"
+                                            href="{{route('seller.deal.day-update',[$deal['id']])}}"
                                             class="btn btn-outline--primary btn-sm edit">
 
                                             <i class="tio-edit"></i>
@@ -226,7 +228,7 @@
                 }
             });
             $.ajax({
-                url: "{{route('admin.deal.status-update')}}",
+                url: "{{route('seller.deal.status-update')}}",
                 method: 'POST',
                 data: {
                     id: id,
@@ -253,7 +255,7 @@
                 }
             });
             $.ajax({
-                url: "{{route('admin.deal.day-status-update')}}",
+                url: "{{route('seller.deal.day-status-update')}}",
                 method: 'POST',
                 data: {
                     id: id,
@@ -288,7 +290,7 @@
                         }
                     });
                     $.ajax({
-                        url: "{{route('admin.deal.day-delete')}}",
+                        url: "{{route('seller.deal.day-delete')}}",
                         method: 'POST',
                         data: {id: id},
                         success: function () {

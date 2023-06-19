@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Coupon Add'))
+@section('title', 'Voucher Add')
 
 @push('css_or_js')
     <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -13,7 +13,7 @@
         <div class="mb-3">
             <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
                 <img src="{{asset('/public/assets/back-end/img/coupon_setup.png')}}" alt="">
-                {{\App\CPU\translate('coupon_setup')}}
+                Voucher Setup
             </h2>
         </div>
         <!-- End Page Title -->
@@ -135,7 +135,7 @@
                         <div class="row justify-content-between align-items-center flex-grow-1">
                             <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
                                 <h5 class="mb-0 text-capitalize d-flex gap-2">
-                                    {{\App\CPU\translate('coupon_list')}}
+                                Voucher List
                                     <span class="badge badge-soft-dark radius-50 fz-12 ml-1">{{ $cou->total() }}</span>
                                 </h5>
                             </div>
@@ -165,8 +165,8 @@
                             <thead class="thead-light thead-50 text-capitalize">
                             <tr>
                                 <th>{{\App\CPU\translate('SL')}}</th>
-                                <th>{{\App\CPU\translate('coupon')}}</th>
-                                <th>{{\App\CPU\translate('coupon_type')}}</th>
+                                <th>Voucher</th>
+                                <th>Voucher Type</th>
                                 <th>{{\App\CPU\translate('Duration')}}</th>
                                 <th>{{\App\CPU\translate('user_limit')}}</th>
                                 <th>{{\App\CPU\translate('discount_bearer')}}</th>

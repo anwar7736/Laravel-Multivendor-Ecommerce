@@ -35,10 +35,10 @@ class ReviewsController extends Controller
                         ->orWhere('l_name', 'like', "%{$value}%");
                 }
             })->pluck('id')->toArray();
-            $reviews = Review::WhereIn('product_id',  $product_id)->orWhereIn('customer_id', $customer_id);
+            $reviews = Review::whereNull('parent_id')->WhereIn('product_id',  $product_id)->orWhereIn('customer_id', $customer_id);
             $query_param = ['search' => $request['search']];
         } else {
-            $reviews = Review::with(['product', 'customer'])
+            $reviews = Review::whereNull('parent_id')->with(['product', 'customer'])
                 ->when($request->product_id != null, function ($q) {
                     $q->where('product_id', request('product_id'));
                 })->when($request->customer_id != null, function ($q) {
@@ -87,14 +87,21 @@ class ReviewsController extends Controller
             }
         }
 
+        $customer = User::updateOrCreate([
+                'name' => $request->customer
+            ], [
+                'updated_at' => now(),
+            ]
+        );
+
         Review::updateOrCreate(
             [
                 'delivery_man_id' => $request->delivery_man_id,
-                'customer_id' => $request->customer_id,
+                'customer_id' => $customer->id,
                 'product_id' => $request->product_id
             ],
             [
-                'customer_id' => $request->customer_id,
+                'customer_id' => $customer->id,
                 'product_id' => $request->product_id,
                 'comment' => $request->comment,
                 'rating' => $request->rating,
@@ -155,13 +162,24 @@ class ReviewsController extends Controller
     public function delete(Request $request)
     {
         $review = Review::find($request->id);
-        foreach(json_decode($review->attachment) as $img)
+        if($review->attachment)
         {
-            ImageManager::delete('review/'.$img);
+            foreach(json_decode($review->attachment) as $img)
+            {
+                ImageManager::delete('review/'.$img);
+            }
         }
 
         $review->delete();
         Toastr::success('Review has been deleted!');
-        return back();
+        return redirect()->route('admin.reviews.list');
+    }
+
+    public function view($id)
+    {
+
+        $review = Review::with('product', 'customer')->find($id);
+        $replies = Review::with('product')->where(['parent_id'=>$id])->get();
+        return view('admin-views.reviews.show', compact('review', 'replies'));
     }
 }

@@ -306,7 +306,7 @@
                         </li>
 
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/coupon*')?'active':''}}">
+                        <li class="navbar-vertical-aside-has-menu {{ (Request::is('seller/coupon*') || Request::is('seller/deal*')) ? 'active' : ''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                href="javascript:" title="{{\App\CPU\translate('Offers_&_Deals')}}">
                                 <i class="tio-users-switch nav-icon"></i>
@@ -314,14 +314,43 @@
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Offers_&_Deals')}}</span>
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                style="display: {{Request::is('seller/coupon*')?'block':'none'}}">
+                                style="display: {{ (Request::is('seller/coupon*') || Request::is('seller/deal*')) ? 'block' : 'none'}}">
                                 <li class="navbar-vertical-aside-has-menu {{Request::is('seller/coupon*')?'active':''}}">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link"
                                        href="{{route('seller.coupon.add-new')}}"
                                        title="{{\App\CPU\translate('coupon')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('coupon')}}</span>
+                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Voucher</span>
+                                    </a>
+                                </li>
+                                <li class="navbar-vertical-aside-has-menu {{(Request::is('seller/deal/flash') || (Request::is('seller/deal/update*')))?'active':''}}">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                       href="{{route('seller.deal.flash')}}"
+                                       title="{{\App\CPU\translate('Flash_Deals')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span
+                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Campaign</span>
+                                    </a>
+                                </li>
+                                <li class="navbar-vertical-aside-has-menu {{(Request::is('seller/deal/day') || (Request::is('seller/deal/day-update*')))?'active':''}}">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                       href="{{route('seller.deal.day')}}"
+                                       title="{{\App\CPU\translate('deal_of_the_day')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Free Shipping
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="navbar-vertical-aside-has-menu {{(Request::is('seller/deal/feature') || Request::is('seller/deal/edit*'))?'active':''}}">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                       href="{{route('seller.deal.feature')}}"
+                                       title="{{\App\CPU\translate('Featured_Deal')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Bundles
+                                        </span>
                                     </a>
                                 </li>
                             </ul>
@@ -346,6 +375,12 @@
                                 <li class="nav-item {{Request::is('seller/messages/chat/customer')?'active':''}}">
                                     <a class="nav-link " href="{{route('seller.messages.chat', ['type' => 'customer'])}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">{{\App\CPU\translate('Admin')}}</span>
+                                    </a>
+                                </li>                                
+                                <li class="nav-item {{Request::is('seller/messages/chat/customer')?'active':''}}">
+                                    <a class="nav-link " href="{{route('seller.messages.chat', ['type' => 'customer'])}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{\App\CPU\translate('Customer')}}</span>
                                     </a>
                                 </li>
@@ -356,6 +391,15 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('seller.contact')}}">
+                                <i class="tio-home-vs-1-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{\App\CPU\translate('Contact To Admin')}}
+                                </span>
+                            </a>
                         </li>
 
 {{--                        <li class="nav-item {{(Request::is('seller/transaction/order-list')) ? 'scroll-here':''}}">--}}

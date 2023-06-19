@@ -89,11 +89,41 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
             Route::delete('delete/{id}', 'CouponController@delete')->name('delete');
 
         });
+
+        Route::group(['prefix' => 'deal', 'as' => 'deal.','middleware'=>['module:promotion_management']], function () {
+            Route::get('flash', 'DealController@flash_index')->name('flash');
+            Route::post('flash', 'DealController@flash_submit');
+
+            // feature deal
+            Route::get('feature', 'DealController@feature_index')->name('feature');
+
+            Route::get('day', 'DealController@deal_of_day')->name('day');
+            Route::post('day', 'DealController@deal_of_day_submit');
+            Route::post('day-status-update', 'DealController@day_status_update')->name('day-status-update');
+
+            Route::get('day-update/{id}', 'DealController@day_edit')->name('day-update');
+            Route::post('day-update/{id}', 'DealController@day_update');
+            Route::post('day-delete', 'DealController@day_delete')->name('day-delete');
+
+            Route::get('update/{id}', 'DealController@edit')->name('update');
+            Route::get('edit/{id}', 'DealController@feature_edit')->name('edit');
+
+            Route::post('update/{id}', 'DealController@update')->name('update');
+            Route::post('status-update', 'DealController@status_update')->name('status-update');
+            Route::post('feature-status', 'DealController@feature_status')->name('feature-status');
+
+            Route::post('featured-update', 'DealController@featured_update')->name('featured-update');
+            Route::get('add-product/{deal_id}', 'DealController@add_product')->name('add-product');
+            Route::post('add-product/{deal_id}', 'DealController@add_product_submit');
+            Route::post('delete-product', 'DealController@delete_product')->name('delete-product');
+        });
+
         Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
             Route::get('order-list', 'TransactionController@order_list')->name('order-list');
             Route::get('transaction-export', 'TransactionController@export')->name('transaction-export');
             Route::get('expense-list', 'TransactionController@expense_list')->name('expense-list');
         });
+        
         //refund request
         Route::group(['prefix' => 'refund', 'as' => 'refund.'], function () {
             Route::get('list/{status}', 'RefundController@list')->name('list');
@@ -164,6 +194,9 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
             Route::get('/ajax-message-by-user', 'ChattingController@ajax_message_by_user')->name('ajax-message-by-user');
             Route::post('/ajax-seller-message-store', 'ChattingController@ajax_seller_message_store')->name('ajax-seller-message-store');
         });
+
+        Route::get('/contact-us', 'ChattingController@viewContact')->name('contact');
+
         // profile
 
         Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {

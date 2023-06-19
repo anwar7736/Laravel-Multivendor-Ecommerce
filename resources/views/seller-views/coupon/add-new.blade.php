@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app-seller')
 
-@section('title', \App\CPU\translate('Coupon Add'))
+@section('title', 'Voucher Add')
 
 @push('css_or_js')
     <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -13,7 +13,7 @@
         <div class="mb-3">
             <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
                 <img src="{{asset('/public/assets/back-end/img/coupon_setup.png')}}" alt="">
-                {{\App\CPU\translate('coupon_setup')}}
+                Voucher Setup
             </h2>
         </div>
         <!-- End Page Title -->
@@ -29,9 +29,9 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-4 form-group">
                                     <label for="name"
-                                           class="title-color font-weight-medium d-flex">{{\App\CPU\translate('coupon_type')}}</label>
+                                           class="title-color font-weight-medium d-flex">Voucher Type</label>
                                     <select class="form-control" id="coupon_type" name="coupon_type" required>
-                                        <option disabled selected>{{\App\CPU\translate('Select_coupon_type')}}</option>
+                                        <option disabled selected>Select voucher type</option>
                                         <option
                                             value="discount_on_purchase">{{\App\CPU\translate('Discount_on_Purchase')}}</option>
                                         <option value="free_delivery">{{\App\CPU\translate('Free_Delivery')}}</option>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4 form-group">
                                     <label for="name"
-                                           class="title-color font-weight-medium d-flex">{{\App\CPU\translate('coupon_title')}}</label>
+                                           class="title-color font-weight-medium d-flex">Voucher Title</label>
                                     <input type="text" name="title" class="form-control" value="{{ old('title') }}"
                                            id="title"
                                            placeholder="{{\App\CPU\translate('Title')}}" required>
@@ -47,7 +47,7 @@
                                 <div class="col-md-6 col-lg-4 form-group">
                                     <div class="d-flex justify-content-between">
                                         <label for="name"
-                                               class="title-color font-weight-medium text-capitalize">{{\App\CPU\translate('coupon_code')}}</label>
+                                               class="title-color font-weight-medium text-capitalize">Voucher Code</label>
                                         <a href="javascript:void(0)" class="float-right c1 fz-12"
                                            onclick="generateCode()">{{\App\CPU\translate('generate_code')}}</a>
                                     </div>
@@ -146,7 +146,7 @@
                         <div class="row justify-content-between align-items-center flex-grow-1">
                             <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
                                 <h5 class="mb-0 text-capitalize d-flex gap-2">
-                                    {{\App\CPU\translate('coupon_list')}}
+                                    Voucher List
                                     <span
                                         class="badge badge-soft-dark radius-50 fz-12 ml-1">{{ $coupons->total() }}</span>
                                 </h5>
@@ -178,8 +178,8 @@
                             <thead class="thead-light thead-50 text-capitalize">
                             <tr>
                                 <th>{{\App\CPU\translate('SL')}}</th>
-                                <th>{{\App\CPU\translate('coupon')}}</th>
-                                <th>{{\App\CPU\translate('coupon_type')}}</th>
+                                <th>Voucher</th>
+                                <th>Voucher Type</th>
                                 <th>{{\App\CPU\translate('Duration')}}</th>
                                 <th>{{\App\CPU\translate('user_limit')}}</th>
                                 <th>{{\App\CPU\translate('discount_bearer')}}</th>

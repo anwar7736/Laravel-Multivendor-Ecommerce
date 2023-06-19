@@ -1,5 +1,5 @@
 @extends('layouts.back-end.app-seller')
-@section('title', \App\CPU\translate('Coupon Edit'))
+@section('title', 'Voucher Edit')
 @push('css_or_js')
     <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('public/assets/back-end/css/custom.css')}}" rel="stylesheet">
@@ -11,7 +11,7 @@
         <div class="mb-3">
             <h2 class="h1 mb-0 text-capitalize">
                 <img src="{{asset('/public/assets/back-end/img/coupon_setup.png')}}" class="mb-1 mr-1" alt="">
-                {{\App\CPU\translate('coupon_update')}}
+                Voucher Update
             </h2>
         </div>
         <!-- End Page Title -->

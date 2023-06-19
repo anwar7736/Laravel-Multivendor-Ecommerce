@@ -1,17 +1,16 @@
-@extends('layouts.back-end.app')
-@section('title', 'Free Shipping Update')
+@extends('layouts.back-end.app-seller')
+@section('title', 'Bundles Update')
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
 @endpush
 
 @section('content')
 <div class="content container-fluid">
     <!-- Page Title -->
     <div class="mb-3">
-        <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
-            <img width="20" src="{{asset('/public/assets/back-end/img/deal_of_the_day.png')}}" alt="">
-            Free Shipping Update
+        <h2 class="h1 mb-0 text-capitalize d-flex gap-2 align-items-center">
+            <img width="20" src="{{asset('/public/assets/back-end/img/featured_deal.png')}}" alt="">
+            Bundles Update
         </h2>
     </div>
     <!-- End Page Title -->
@@ -21,9 +20,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.deal.day-update',[$deal['id']])}}"
-                          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
-                          method="post">
+                    <form action="{{route('seller.deal.update',[$deal['id']])}}" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" method="post">
                         @csrf
                         @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                         @php($language = $language->value ?? null)
@@ -53,30 +50,30 @@
                                 }
                                 ?>
                                 <div class="row {{$lang != $default_lang ? 'd-none':''}} lang_form" id="{{$lang}}-form">
+                                    <input type="text" name="deal_type" value="feature_deal"  class="d-none">
                                     <div class="col-md-12">
-                                        <label for="name" class="title-color">{{ \App\CPU\translate('title')}} ({{strtoupper($lang)}})</label>
-                                        <input type="text" name="title[]"
+                                        <label for="name" class="title-color text-capitalize">{{ \App\CPU\translate('title')}}  ({{strtoupper($lang)}})</label>
+                                        <input type="text" name="title[]" class="form-control" id="title"
                                                value="{{$lang==$default_lang?$deal['title']:($translate[$lang]['title']??'')}}"
-                                               class="form-control" id="title"
-                                               placeholder="{{\App\CPU\translate('Ex')}} : {{\App\CPU\translate('LUX')}}">
+                                               placeholder="{{\App\CPU\translate('Ex')}} : {{\App\CPU\translate('LUX')}}"
+                                               {{$lang == $default_lang? 'required':''}}>
                                     </div>
                                 </div>
                                 <input type="hidden" name="lang[]" value="{{$lang}}" id="lang">
                             @endforeach
                             <div class="row">
-                                <div class="col-md-12 mt-3">
-                                    <label for="name" class="title-color">{{ \App\CPU\translate('product')}}</label>
-                                    <select
-                                        class="js-example-basic-multiple js-states js-example-responsive form-control"
-                                        name="product_id">
-                                        @foreach (\App\Model\Product::orderBy('name', 'asc')->get() as $key => $product)
-                                            <option value="{{ $product->id }}" {{$deal['product_id']==$product->id?'selected':''}}>
-                                                {{$product['name']}}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="col-md-6 mt-3">
+                                    <label for="name" class="title-color text-capitalize">{{ \App\CPU\translate('start_date')}}</label>
+                                    <input type="date" value="{{date('Y-m-d',strtotime($deal['start_date']))}}" name="start_date" required
+                                           class="form-control">
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="name" class="title-color text-capitalize">{{ \App\CPU\translate('end_date')}}</label>
+                                    <input type="date" value="{{date('Y-m-d', strtotime($deal['end_date']))}}" name="end_date" required
+                                           class="form-control">
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="d-flex justify-content-end gap-3">
@@ -88,20 +85,32 @@
             </div>
         </div>
     </div>
+
+
 </div>
 @endsection
 
 @push('script')
-    <script src="{{asset('public/assets/back-end')}}/js/select2.min.js"></script>
     <script>
-        $(".js-example-theme-single").select2({
-            theme: "classic"
-        });
+        $(document).ready(function () {
+            // color select select2
+            $('.color-var-select').select2({
+                templateResult: colorCodeSelect,
+                templateSelection: colorCodeSelect,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
 
-        $(".js-example-responsive").select2({
-            width: 'resolve'
+            function colorCodeSelect(state) {
+                var colorCode = $(state.element).val();
+                if (!colorCode) return state.text;
+                return "<span class='color-preview' style='background-color:" + colorCode + ";'></span>" + state.text;
+            }
         });
+    </script>
 
+    <script>
         $(".lang_link").click(function (e) {
             e.preventDefault();
             $(".lang_link").removeClass('active');
@@ -123,4 +132,5 @@
             $('#dataTable').DataTable();
         });
     </script>
+
 @endpush

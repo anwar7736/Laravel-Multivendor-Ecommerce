@@ -41,6 +41,10 @@
 
 
                             <div class="">
+                            <div class="flex-start">
+                                    <h4>ID : </h4>
+                                    <h4 class="mx-1">{{$shop->id}}</h4>
+                                </div>                                
                                 <div class="flex-start">
                                     <h4>{{\App\CPU\translate('Name')}} : </h4>
                                     <h4 class="mx-1">{{$shop->name}}</h4>

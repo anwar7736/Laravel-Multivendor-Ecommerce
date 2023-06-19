@@ -1,4 +1,4 @@
-@extends('layouts.back-end.app')
+@extends('layouts.back-end.app-seller')
 @section('title', 'Free Shipping Update')
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.deal.day-update',[$deal['id']])}}"
+                    <form action="{{route('seller.deal.day-update',[$deal['id']])}}"
                           style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                           method="post">
                         @csrf

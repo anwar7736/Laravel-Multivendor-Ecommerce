@@ -19,14 +19,8 @@
                         <div class="modal-body">
 
                         <div class="form-group">
-                                <label for="exampleInputEmail1">Choose Customer</label>
-                                <select class="js-select2-custom form-control" name="customer_id" required>
-                                    <option value="">Please Select Customer</option>
-                                    @foreach($customers as $key => $customer)
-                                        @php $fullName = $customer->f_name . ' '.$customer->l_name; @endphp
-                                        <option value="{{ $customer->id }}">{{ $customer->name ??  $fullName }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputEmail1">Customer Name</label>
+                                <input type="text" class="form-control" name="customer" value="{{ old('customer') }}" required>
                             </div>                            
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Choose Product</label>

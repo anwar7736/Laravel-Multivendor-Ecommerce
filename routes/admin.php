@@ -210,6 +210,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         });
         Route::group(['prefix' => 'reviews', 'as' => 'reviews.','middleware'=>['module:user_section']], function () {
             Route::get('list', 'ReviewsController@list')->name('list')->middleware('actch');
+            Route::get('review-view/{id}', 'ReviewsController@view')->name('view')->middleware('actch');
             Route::get('create-fake-review', 'ReviewsController@create')->name('create')->middleware('actch');
             Route::post('add-fake-review', 'ReviewsController@store')->name('store')->middleware('actch');
             Route::delete('delete/{id}', 'ReviewsController@delete')->name('delete');

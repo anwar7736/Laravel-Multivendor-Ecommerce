@@ -481,7 +481,7 @@
                                        title="{{\App\CPU\translate('coupon')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('coupon')}}</span>
+                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Voucher</span>
                                     </a>
                                 </li>
                                 <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/deal/flash') || (Request::is('admin/deal/update*')))?'active':''}}">
@@ -490,7 +490,7 @@
                                        title="{{\App\CPU\translate('Flash_Deals')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Flash_Deals')}}</span>
+                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Campaign</span>
                                     </a>
                                 </li>
                                 <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/deal/day') || (Request::is('admin/deal/day-update*')))?'active':''}}">
@@ -499,7 +499,7 @@
                                        title="{{\App\CPU\translate('deal_of_the_day')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                            {{\App\CPU\translate('deal_of_the_day')}}
+                                            Free Shipping
                                         </span>
                                     </a>
                                 </li>
@@ -509,7 +509,7 @@
                                        title="{{\App\CPU\translate('Featured_Deal')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                            {{\App\CPU\translate('Featured_Deal')}}
+                                            Bundles
                                         </span>
                                     </a>
                                 </li>

@@ -1,4 +1,4 @@
-@extends('layouts.back-end.app')
+@extends('layouts.back-end.app-seller')
 @section('title', 'Campaign Update'))
 @push('css_or_js')
     <link href="{{asset('public/assets/back-end/css/tags-input.min.css')}}" rel="stylesheet">
@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.deal.update',[$deal['id']])}}" method="post" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" enctype="multipart/form-data">
+                    <form action="{{route('seller.deal.update',[$deal['id']])}}" method="post" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" enctype="multipart/form-data">
                         @csrf
                         @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                         @php($language = $language->value ?? null)

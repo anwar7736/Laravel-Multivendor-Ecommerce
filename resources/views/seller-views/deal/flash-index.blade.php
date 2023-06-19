@@ -1,4 +1,4 @@
-@extends('layouts.back-end.app')
+@extends('layouts.back-end.app-seller')
 
 @section('title', 'Campaign')
 
@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.deal.flash')}}" method="post" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" enctype="multipart/form-data">
+                    <form action="{{route('seller.deal.flash')}}" method="post" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" enctype="multipart/form-data">
                         @csrf
                         @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                         @php($language = $language->value ?? null)
@@ -155,21 +155,23 @@
                                 </td>
                                 <td>{{ $deal->products_count }}</td>
                                 <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher_input status check_uncheck"
-                                                id="{{$deal['id']}}" {{$deal->status == 1?'checked':''}}>
-                                        <span class="switcher_control"></span>
+                                    <label class="">
+                                        @if($deal->status == 1)
+                                        <span class="badge badge-soft-success">Yes </span>
+                                        @else
+                                        <span class="badge badge-soft-danger">No</span>
+                                        @endif
                                     </label>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex align-items-center justify-content-center gap-10">
-                                        <a class="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-info" href="{{route('admin.deal.add-product',[$deal['id']])}}">
+                                        <a class="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-info" href="{{route('seller.deal.add-product',[$deal['id']])}}">
                                             <img src="{{asset('/public/assets/back-end/img/plus.svg')}}" class="svg" alt="">
                                             {{\App\CPU\translate('Add Product')}}
                                         </a>
 
                                         <a title="{{\App\CPU\translate('Edit')}}"
-                                            href="{{route('admin.deal.update',[$deal['id']])}}"
+                                            href="{{route('seller.deal.update',[$deal['id']])}}"
                                             class="btn btn-outline--primary btn-sm edit">
                                             <i class="tio-edit"></i>
                                         </a>
@@ -250,7 +252,7 @@
                 }
             });
             $.ajax({
-                url: "{{route('admin.deal.status-update')}}",
+                url: "{{route('seller.deal.status-update')}}",
                 method: 'POST',
                 data: {
                     id: id,

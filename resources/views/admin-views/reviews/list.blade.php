@@ -207,16 +207,23 @@
                                         </label>
                                     </td>                                    
                                     <td>
-                                        <a class="btn btn-outline-danger btn-sm square-btn" href="javascript:"
-                                            title="{{\App\CPU\translate('Delete')}}"
-                                            onclick="form_alert('product-{{$review['id']}}','Want to delete this review ?')">
-                                            <i class="tio-delete"></i>
-                                        </a>
-                                        <form action="{{route('admin.reviews.delete',[$review['id']])}}"
-                                            method="post" id="product-{{$review['id']}}">
-                                            @csrf 
-                                            @method('delete')
-                                        </form>
+                                    <div class="d-flex gap-10 justify-content-center">
+                                            <a title="{{\App\CPU\translate('View')}}"
+                                               class="btn btn-outline-info btn-sm square-btn"
+                                               href="{{route('admin.reviews.view',$review->id)}}">
+                                                <i class="tio-invisible"></i>
+                                            </a>
+                                            <a class="btn btn-outline-danger btn-sm square-btn" href="javascript:"
+                                                    title="{{\App\CPU\translate('Delete')}}"
+                                                    onclick="form_alert('product-{{$review['id']}}','Want to delete this review ?')">
+                                                    <i class="tio-delete"></i>
+                                            </a>
+                                            <form action="{{route('admin.reviews.delete',[$review['id']])}}"
+                                                method="post" id="product-{{$review['id']}}">
+                                                @csrf 
+                                                @method('delete')
+                                            </form>
+                                        </div>
                                     </td>
 
                                 </tr>
