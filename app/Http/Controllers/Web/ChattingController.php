@@ -12,6 +12,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function App\CPU\translate;
+use App\Events\ChatEvent;
 
 class ChattingController extends Controller
 {
@@ -128,6 +129,8 @@ class ChattingController extends Controller
             $seller = Seller::find($request->seller_id);
             $fcm_token = $seller->cm_firebase_token;
 
+            event(new ChatEvent('seller-customer', auth('customer')->id(), $request->seller_id));
+
         }
 
         elseif ($request->has('delivery_man_id'))
@@ -144,6 +147,8 @@ class ChattingController extends Controller
 
             $dm = DeliveryMan::find($request->delivery_man_id);
             $fcm_token = $dm->fcm_token;
+
+            event(new ChatEvent('deliveryman-customer', auth('customer')->id(), $request->delivery_man_id));
         }
 
         if(!empty($fcm_token)) {

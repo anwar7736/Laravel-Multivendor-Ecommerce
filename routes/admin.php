@@ -585,6 +585,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('ajax-message-by-delivery-man', 'ChattingController@ajax_message_by_delivery_man')->name('ajax-message-by-delivery-man');
             Route::post('admin-message-store', 'ChattingController@ajax_admin_message_store')->name('ajax-admin-message-store');
 
+
+
             Route::group(['prefix' => 'emergency-contact', 'as' => 'emergency-contact.'], function (){
                 Route::get('/', 'EmergencyContactController@emergency_contact')->name('index');
                 Route::post('add', 'EmergencyContactController@add')->name('add');
@@ -593,6 +595,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             });
 
             Route::get('rating/{id}', 'DeliveryManController@rating')->name('rating');
+        });
+
+        // Messaging
+        Route::group(['prefix' => 'messages', 'as' => 'messages.'], function () {
+            Route::get('/chat/{type}', 'ChattingController@chat')->name('chat');
+            Route::get('/ajax-message-by-user', 'ChattingController@ajax_message_by_user')->name('ajax-message-by-user');
+            Route::post('/ajax-seller-message-store', 'ChattingController@ajax_seller_message_store')->name('ajax-seller-message-store');
         });
 
         Route::group(['prefix' => 'file-manager', 'as' => 'file-manager.','middleware'=>['module:system_settings']], function () {

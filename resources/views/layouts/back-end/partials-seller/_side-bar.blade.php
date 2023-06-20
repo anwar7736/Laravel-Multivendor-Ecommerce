@@ -372,8 +372,8 @@
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('seller/messages*')?'block':'none'}}">
-                                <li class="nav-item {{Request::is('seller/messages/chat/customer')?'active':''}}">
-                                    <a class="nav-link " href="{{route('seller.messages.chat', ['type' => 'customer'])}}">
+                                <li class="nav-item {{Request::is('seller/messages/chat/admin')?'active':''}}">
+                                    <a class="nav-link " href="{{route('seller.messages.chat', ['type' => 'admin'])}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{\App\CPU\translate('Admin')}}</span>
                                     </a>

@@ -108,6 +108,9 @@
         </script>
     @endif
     <!-- JS Plugins Init. -->
+    //Pusher CDN
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
     <script>
         $(document).on('ready', function() {
  

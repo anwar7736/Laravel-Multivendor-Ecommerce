@@ -152,7 +152,7 @@
                                                 @endif
                                                 <input class="form-control form-control-sm {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} w-75"
                                                     id="msgInputValue" type="text" placeholder="{{\App\CPU\translate('Send a message')}}" aria-label="Search">
-                                                <input class="aSend __w-45px" type="submit" id="msgSendBtn" value="{{\App\CPU\translate('Send')}}">
+                                                <input class="aSend __w-45px btn btn-success" type="submit" id="msgSendBtn" value="{{\App\CPU\translate('Send')}}">
 
                                             </form>
                                         </div>
@@ -175,6 +175,9 @@
 
 @push('script')
     <script>
+        var sender =  $('#hidden_value').attr("value");
+        var receiver = '{{auth('customer')->id()}}';
+
         $(document).ready(function () {
             var shop_id;
             $(".msg_history").stop().animate({scrollTop: $(".msg_history")[0].scrollHeight}, 1000);
@@ -182,6 +185,7 @@
             $(".seller").click(function (e) {
                 e.stopPropagation();
                 shop_id = e.target.id;
+                sender = shop_id;
                 console.log(shop_id)
                 //active when click on seller
                 $('.chat_list.btn--primary').removeClass('btn--primary');
@@ -240,8 +244,10 @@
                                           </div>
                                         </div>`
                                     )
+
                                 }
                                 $('#hidden_value').attr("value", shop_id);
+                                $('#seller_value').attr("value", shop_id);4
                             });
                         } else {
                             $(".msg_history").html(`<p> No Message available </p>`);
@@ -249,6 +255,7 @@
                         }
                         // data = "";
                         // $('.msg_history > div').remove();
+                        $(".msg_history").stop().animate({scrollTop: $(".msg_history")[0].scrollHeight}, 1000);
 
                     }
                 });
@@ -272,6 +279,10 @@
                 var new_shop_id = $('#myForm').find('#hidden_value').val();
                 var new_seller_id = $('#myForm').find('#seller_value').val();
 
+                if(inputs.length == 0)
+                {
+                    return;
+                }
 
                 let data = {
                     message: inputs,
@@ -298,15 +309,34 @@
                               </div>
                             </div>`
                         )
+
+                        $(".msg_history").stop().animate({scrollTop: $(".msg_history")[0].scrollHeight}, 1000);
                     },
                     error: function (error) {
                         toastr.warning(error.responseJSON)
                     }
                 });
                 $('#myForm').find('#msgInputValue').val('');
-                $(".msg_history").stop().animate({scrollTop: $(".msg_history")[0].scrollHeight}, 1000);
 
             });
+
+                Pusher.logToConsole = true;
+
+                var pusher = new Pusher('c680d5096d63c53df244', {
+                                cluster: 'ap2'
+                            });
+
+                var channel = pusher.subscribe('chat-channel');
+                channel.bind('chat-event', function(data) {
+                    if(data.type == 'seller-customer')
+                    {
+                        if(data.sender == sender && data.receiver == receiver)
+                        {
+                            $('#'+data.sender).click();
+                        }
+                    }
+                });
+
         });
     </script>
 

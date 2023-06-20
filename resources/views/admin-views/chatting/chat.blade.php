@@ -1,4 +1,4 @@
-@extends('layouts.back-end.app-seller')
+@extends('layouts.back-end.app')
 
 @section('title',\App\CPU\translate('Chatting Page'))
 
@@ -20,12 +20,12 @@
                     <div class="card card-body px-0 h-100">
                         <div class="media align-items-center px-3 gap-3 mb-4">
                             <div class="avatar avatar-sm avatar-circle">
-                                <img class="avatar-img" onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}" alt="Image Description">
+                                <img class="avatar-img" onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" src="{{asset('storage/app/public/seller/')}}/{{auth('admin')->user()->image}}" alt="Image Description">
                                 <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                             </div>
                             <div class="media-body">
-                                <h5 class="profile-name mb-1">{{ $shop->name }}</h5>
-                                <span class="fz-12">{{\App\CPU\translate('Seller')}}</span>
+                                <h5 class="profile-name mb-1">{{ $admin->name }}</h5>
+                                <span class="fz-12">{{\App\CPU\translate('Admin')}}</span>
                             </div>
                         </div>
 
@@ -36,12 +36,12 @@
                                     <input
                                         class=""
                                         id="myInput" type="text"
-                                        @if(Request::is('seller/messages/chat/customer'))
+                                        @if(Request::is('admin/messages/chat/customer'))
                                             placeholder="{{\App\CPU\translate('Search_customers...')}}"
-                                        @elseif(Request::is('seller/messages/chat/delivery-man'))
+                                        @elseif(Request::is('admin/messages/chat/delivery-man'))
                                         placeholder="{{\App\CPU\translate('Search_delivery_men...')}}"                                        
-                                        @elseif(Request::is('seller/messages/chat/admin'))
-                                        placeholder="Search admin..."
+                                        @elseif(Request::is('admin/messages/chat/seller'))
+                                        placeholder="Search seller..."
                                         @endif
                                         aria-label="Search customers...">
                                 </div>
@@ -50,8 +50,8 @@
                             <div class="inbox_chat d-flex flex-column mt-1">
                                 @foreach($chattings_user as $key => $chatting)
                                     <div class="list_filter">
-                                        <div class="chat_list p-3 d-flex gap-2 user_{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }} seller-list @if ($key == 0) active @endif"
-                                             id="{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}" data-name="{{$chatting->admin_id ? $chatting->name : $chatting->f_name.' '.$chatting->l_name }}" data-phone="{{ $chatting->phone }}">
+                                        <div class="chat_list p-3 d-flex gap-2 user_{{$chatting->seller_id }} seller-list @if ($key == 0) active @endif"
+                                             id="{{ $chatting->seller_id }}" data-name="{{$chatting->seller_id ? $chatting->f_name.' '.$chatting->l_name : ''}}" data-phone="{{ $chatting->phone }}">
                                             <div class="chat_people media gap-10" id="chat_people">
                                                 <div class="chat_img avatar avatar-sm avatar-circle">
                                                     <img
@@ -60,19 +60,19 @@
                                                         @else
                                                             src="{{ asset('storage/app/public/delivery-man/'.$chatting->image) }}"
                                                         @endif
-                                                        id="{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="avatar-img avatar-circle">
+                                                        id="{{$chatting->seller_id }}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="avatar-img avatar-circle">
                                                     <span class="avatar-satatus avatar-sm-status avatar-status-success"></span>
                                                 </div>
                                                 <div class="chat_ib media-body">
-                                                    <h5 class="mb-1 seller @if($chatting->seen_by_seller)active-text @endif"
-                                                        id="{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}" data-name="{{$chatting->admin_id ? $chatting->name : $chatting->f_name.' '.$chatting->l_name }}" data-phone="{{ $chatting->phone }}">
-                                                        {{$chatting->admin_id ? $chatting->name : $chatting->f_name.' '.$chatting->l_name }}
-                                                        <br><span class="mt-2 font-weight-normal text-muted" id="{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}" data-name="{{$chatting->admin_id ? $chatting->name : $chatting->f_name.' '.$chatting->l_name }}" data-phone="{{ $chatting->phone }}">{{ $chatting->phone }}</span>
+                                                    <h5 class="mb-1 seller @if($chatting->seen_by_admin)active-text @endif"
+                                                        id="{{$chatting->seller_id }}" data-name="{{$chatting->seller_id ?        $chatting->f_name.' '.$chatting->l_name : ''}}" data-phone="{{ $chatting->phone }}">
+                                                        {{$chatting->seller_id ? $chatting->f_name.' '.$chatting->l_name : ''}}
+                                                        <br><span class="mt-2 font-weight-normal text-muted" id="{{$chatting->seller_id }}" data-name="{{$chatting->seller_id ? $chatting->f_name.' '.$chatting->l_name : ''}}" data-phone="{{ $chatting->phone }}">{{ $chatting->phone }}</span>
                                                     </h5>
                                                 </div>
                                             </div>
-                                            @if($chatting->seen_by_seller == false)
-                                                <div class="message-status bg-danger" id="notif-alert-{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}"></div>
+                                            @if($chatting->seen_by_admin == false)
+                                                <div class="message-status bg-danger" id="notif-alert-{{$chatting->seller_id }}"></div>
                                             @endif
                                         </div>
 
@@ -100,7 +100,7 @@
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="profile-name mb-1" id="profile_name">{{$chattings_user[0]->name ?? $chattings_user[0]->f_name.' '.$chattings_user[0]->l_name }}</h5>
+                                    <h5 class="profile-name mb-1" id="profile_name">{{$chattings_user[0]->f_name.' '.$chattings_user[0]->l_name }}</h5>
                                     <span class="fz-12" id="profile_phone">{{ $chattings_user[0]->phone }}</span>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="mesgs">
                                     <div class="msg_history d-flex flex-column-reverse" id="show_msg">
                                         @foreach($chattings as $key => $message)
-                                                @if ( $message->sent_by_customer ? $message->sent_by_customer : ($message->sent_by_delivery_man ? $message->sent_by_delivery_man : $message->sent_by_admin))
+                                                @if ( $message->sent_by_customer ? $message->sent_by_customer : ($message->sent_by_delivery_man ? $message->sent_by_delivery_man : $message->sent_by_seller))
                                                     <div class="incoming_msg">
                                                         <div class="received_msg">
                                                             <div class="received_withd_msg">
@@ -143,7 +143,7 @@
                                             <form class="mt-4" id="myForm">
                                                 @csrf
                                                     <input type="text" id="hidden_value" hidden
-                                                           value="{{$chatting->user_id ? $chatting->user_id : ($chatting->delivery_man_id ? $chatting->delivery_man_id : $chatting->admin_id) }}" name="">
+                                                           value="{{$chatting->seller_id }}" name="">
 
                                                 <textarea
                                                     class="form-control h-120"
@@ -180,7 +180,7 @@
 @push('script')
     <script>
         var sender = $('#hidden_value').val();
-        var receiver = '{{auth('seller')->id()}}';
+        var receiver = '{{auth('admin')->id()}}';
 
         function messageGet(e){
             e.stopPropagation();
@@ -203,15 +203,15 @@
 
             let url;
 
-            if ("{{ Request::is('seller/messages/chat/customer') }}" == true){
-                url = "{{ route('seller.messages.ajax-message-by-user') }}" +"?user_id=" + user_id;
+            if ("{{ Request::is('admin/messages/chat/customer') }}" == true){
+                url = "{{ route('admin.messages.ajax-message-by-user') }}" +"?user_id=" + user_id;
             }
-            else if("{{ Request::is('seller/messages/chat/delivery-man') }}" == true) {
-                url = "{{ route('seller.messages.ajax-message-by-user') }}" +"?delivery_man_id=" + user_id;
+            else if("{{ Request::is('admin/messages/chat/delivery-man') }}" == true) {
+                url = "{{ route('admin.messages.ajax-message-by-user') }}" +"?delivery_man_id=" + user_id;
             }            
             
-            else if("{{ Request::is('seller/messages/chat/admin') }}" == true) {
-                url = "{{ route('seller.messages.ajax-message-by-user') }}" +"?admin_id=" + user_id;
+            else if("{{ Request::is('admin/messages/chat/seller') }}" == true) {
+                url = "{{ route('admin.messages.ajax-message-by-user') }}" +"?seller_id=" + user_id;
             }
 
             $.ajax({
@@ -231,7 +231,7 @@
                             let time = dateTime.toLocaleTimeString().toLowerCase();
                             let date = month[dateTime.getMonth().toString()] + " " + dateTime.getDate().toString();
 
-                            if (element.sent_by_seller) {
+                            if (element.sent_by_admin) {
                                 $(".msg_history").prepend(`
                                       <div class="outgoing_msg" id="outgoing_msg">
                                         <div class='sent_msg'>
@@ -298,15 +298,15 @@
                 var inputs = $('#myForm').find('#msgInputValue').val();
                 let post_url;
 
-                if ("{{ Request::is('seller/messages/chat/customer') }}" == true){
-                    post_url = "{{ route('seller.messages.ajax-seller-message-store') }}" +"?user_id=" + user_id;
+                if ("{{ Request::is('admin/messages/chat/customer') }}" == true){
+                    post_url = "{{ route('admin.messages.ajax-seller-message-store') }}" +"?user_id=" + user_id;
                 }
-                else if("{{ Request::is('seller/messages/chat/delivery-man') }}" == true) {
-                    post_url = "{{ route('seller.messages.ajax-seller-message-store') }}" +"?delivery_man_id=" + user_id;
+                else if("{{ Request::is('admin/messages/chat/delivery-man') }}" == true) {
+                    post_url = "{{ route('admin.messages.ajax-seller-message-store') }}" +"?delivery_man_id=" + user_id;
                 }                
                 
-                else if("{{ Request::is('seller/messages/chat/admin') }}" == true) {
-                    post_url = "{{ route('seller.messages.ajax-seller-message-store') }}" +"?admin_id=" + user_id;
+                else if("{{ Request::is('admin/messages/chat/seller') }}" == true) {
+                    post_url = "{{ route('admin.messages.ajax-seller-message-store') }}" +"?seller_id=" + user_id;
                 }
 
                 if(inputs.length == 0)
@@ -364,13 +364,13 @@
 
             var channel = pusher.subscribe('chat-channel');
             channel.bind('chat-event', function(data) {
-                if(data.type == 'seller-customer' || data.type == 'seller-admin')
+                if(data.type == 'seller-admin')
                 {
                     if(data.sender == sender && data.receiver == receiver)
                     {
                         $('h5.seller').find('#'+data.sender).click();
                     }
-                }                
+                }
             });
         });
     </script>

@@ -308,6 +308,9 @@
 <script src={{asset("assets/back-end/js/toastr.js")}}></script>
 {!! Toastr::message() !!}
 
+//Pusher CDN
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
 <script>
     function addWishlist(product_id) {
         $.ajaxSetup({

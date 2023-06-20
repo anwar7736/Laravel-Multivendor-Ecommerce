@@ -2483,4 +2483,5 @@
   'Add_Product' => 'Add Product',
   'top-rated' => 'Top-rated',
   'most-favorite' => 'Most-favorite',
+  'All_Priority' => 'All Priority',
 );

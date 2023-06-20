@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2023 at 04:21 PM
+-- Generation Time: Jun 20, 2023 at 02:03 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -469,10 +469,120 @@ CREATE TABLE `chattings` (
 --
 
 INSERT INTO `chattings` (`id`, `user_id`, `seller_id`, `admin_id`, `delivery_man_id`, `message`, `sent_by_customer`, `sent_by_seller`, `sent_by_admin`, `sent_by_delivery_man`, `seen_by_customer`, `seen_by_seller`, `seen_by_admin`, `seen_by_delivery_man`, `status`, `created_at`, `updated_at`, `shop_id`) VALUES
-(1, 3, 2, NULL, NULL, 'Say hello!', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:12:50', '2023-06-17 05:17:25', 2),
-(2, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:13:15', '2023-06-17 05:17:25', 2),
-(3, 3, 2, NULL, NULL, 'How are you?', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:13:43', '2023-06-17 05:17:25', 2),
-(4, 3, 2, NULL, NULL, 'I\'m fine, and you?', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:14:17', '2023-06-17 05:17:25', 2);
+(1, 3, 2, NULL, NULL, 'Say hello!', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:12:50', '2023-06-20 06:00:18', 2),
+(2, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:13:15', '2023-06-20 06:00:18', 2),
+(3, 3, 2, NULL, NULL, 'How are you?', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:13:43', '2023-06-20 06:00:18', 2),
+(4, 3, 2, NULL, NULL, 'I\'m fine, and you?', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-17 05:14:17', '2023-06-20 06:00:18', 2),
+(5, 3, 2, NULL, NULL, 'I\'m also fine', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 05:52:36', '2023-06-20 06:00:18', 2),
+(6, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 05:57:13', '2023-06-20 06:00:18', 2),
+(7, 3, 2, NULL, NULL, 'Say hello!', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 05:57:27', '2023-06-20 06:00:18', 2),
+(8, 3, 1, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 0, NULL, NULL, 1, '2023-06-19 05:58:55', '2023-06-20 05:58:59', 1),
+(9, 3, 1, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 0, NULL, NULL, 1, '2023-06-19 05:59:01', '2023-06-20 05:58:59', 1),
+(10, 3, 1, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 0, NULL, NULL, 1, '2023-06-19 05:59:03', '2023-06-20 05:58:59', 1),
+(11, 3, 1, NULL, NULL, 'asdfa', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 05:59:55', '2023-06-20 06:00:18', 2),
+(12, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 06:03:57', '2023-06-20 06:00:09', 1),
+(13, 3, 2, NULL, NULL, 'Dear customer,\nGood Morning', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 22:54:00', '2023-06-20 06:00:18', 2),
+(14, 3, 1, NULL, NULL, 'Good Morning', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-19 22:54:21', '2023-06-20 06:00:18', 2),
+(15, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:18:30', '2023-06-20 06:00:18', 2),
+(16, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:18:47', '2023-06-20 06:00:18', 2),
+(17, 3, 2, NULL, NULL, 'Go', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:31:48', '2023-06-20 06:00:18', 2),
+(18, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:33:05', '2023-06-20 06:00:18', 2),
+(19, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:41:23', '2023-06-20 06:00:18', 2),
+(20, 3, 2, NULL, NULL, 'Go', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:42:56', '2023-06-20 06:00:18', 2),
+(21, 3, 2, NULL, NULL, 'Let me check', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:44:08', '2023-06-20 06:00:18', 2),
+(22, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:47:18', '2023-06-20 06:00:18', 2),
+(23, 3, 2, NULL, NULL, 'Plz check my previous message', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:47:37', '2023-06-20 06:00:18', 2),
+(24, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 00:48:22', '2023-06-20 06:00:18', 2),
+(25, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:02:27', '2023-06-20 06:00:18', 2),
+(26, 3, 2, NULL, NULL, 'How are you?', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:02:59', '2023-06-20 06:00:18', 2),
+(27, 3, 2, NULL, NULL, 'I\'m fine.\nyou?', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:03:18', '2023-06-20 06:00:18', 2),
+(28, 3, 2, NULL, NULL, 'Go', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:06:34', '2023-06-20 06:00:18', 2),
+(29, 3, 2, NULL, NULL, 'Go now', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:06:52', '2023-06-20 06:00:18', 2),
+(30, 3, 2, NULL, NULL, 'Hello there!', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:07:12', '2023-06-20 06:00:18', 2),
+(31, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:10:12', '2023-06-20 06:00:18', 2),
+(32, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:11:38', '2023-06-20 06:00:18', 2),
+(33, 3, 2, NULL, NULL, 'Go ahead', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:14:05', '2023-06-20 06:00:18', 2),
+(34, 3, 2, NULL, NULL, 'Ok', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:14:22', '2023-06-20 06:00:18', 2),
+(35, 3, 2, NULL, NULL, 'Good', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:14:32', '2023-06-20 06:00:18', 2),
+(36, 3, 2, NULL, NULL, 'Good Job', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:15:52', '2023-06-20 06:00:18', 2),
+(37, 3, 2, NULL, NULL, 'Go', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:19:29', '2023-06-20 06:00:18', 2),
+(38, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:33:17', '2023-06-20 06:00:18', 2),
+(39, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:34:04', '2023-06-20 06:00:18', 2),
+(40, 3, 2, NULL, NULL, 'Sorry', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:34:32', '2023-06-20 06:00:18', 2),
+(41, 3, 2, NULL, NULL, 'But, why?', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:34:53', '2023-06-20 06:00:18', 2),
+(42, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:37:13', '2023-06-20 06:00:18', 2),
+(43, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:37:59', '2023-06-20 06:00:18', 2),
+(44, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:38:56', '2023-06-20 06:00:18', 2),
+(45, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:39:53', '2023-06-20 06:00:18', 2),
+(46, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:40:02', '2023-06-20 06:00:18', 2),
+(47, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:40:18', '2023-06-20 06:00:18', 2),
+(48, 3, 2, NULL, NULL, 'Go now', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:43:40', '2023-06-20 06:00:18', 2),
+(49, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:44:10', '2023-06-20 06:00:18', 2),
+(50, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:44:22', '2023-06-20 06:00:18', 2),
+(51, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:45:10', '2023-06-20 06:00:18', 2),
+(52, 3, 2, NULL, NULL, 'Go now', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:47:51', '2023-06-20 06:00:18', 2),
+(53, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:48:00', '2023-06-20 06:00:18', 2),
+(54, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:48:14', '2023-06-20 06:00:18', 2),
+(55, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:49:54', '2023-06-20 06:00:18', 2),
+(56, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 01:50:02', '2023-06-20 06:00:18', 2),
+(57, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:19:19', '2023-06-20 06:00:18', 2),
+(58, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:19:46', '2023-06-20 06:00:18', 2),
+(59, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:20:42', '2023-06-20 06:00:18', 2),
+(60, 3, 2, NULL, NULL, 'Good', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:20:54', '2023-06-20 06:00:18', 2),
+(61, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:26:25', '2023-06-20 06:00:18', 2),
+(62, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:26:38', '2023-06-20 06:00:18', 2),
+(63, 3, 2, NULL, NULL, 'What\'s up?', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:27:41', '2023-06-20 06:00:18', 2),
+(64, 3, 2, NULL, NULL, 'I\'m fine and you?', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:27:55', '2023-06-20 06:00:18', 2),
+(65, 3, 2, NULL, NULL, 'I\'m also fine.', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:28:12', '2023-06-20 06:00:18', 2),
+(66, 3, 2, NULL, NULL, 'Good', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:28:25', '2023-06-20 06:00:18', 2),
+(67, 3, 2, NULL, NULL, 'Nice to meet you.', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:28:34', '2023-06-20 06:00:18', 2),
+(68, 3, 2, NULL, NULL, 'Same here', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:28:47', '2023-06-20 06:00:18', 2),
+(69, 3, 2, NULL, NULL, 'I like you', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:29:54', '2023-06-20 06:00:18', 2),
+(70, 3, 2, NULL, NULL, 'Bye', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:30:55', '2023-06-20 06:00:18', 2),
+(71, 3, 2, NULL, NULL, 'Bye', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:31:20', '2023-06-20 06:00:18', 2),
+(72, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:40:41', '2023-06-20 06:00:18', 2),
+(73, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:40:55', '2023-06-20 06:00:18', 2),
+(74, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:43:43', '2023-06-20 06:00:18', 2),
+(75, 3, 2, NULL, NULL, 'Hi there!', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:47:23', '2023-06-20 06:00:18', 2),
+(76, 3, 2, NULL, NULL, 'Hello there!', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:47:37', '2023-06-20 06:00:18', 2),
+(77, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 0, 1, 1, NULL, 1, '2023-06-20 01:02:27', '2023-06-20 06:01:11', 2),
+(78, 1, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:11:24', '2023-06-20 05:21:08', 2),
+(81, NULL, 2, 1, NULL, 'Hello admin', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:18:46', '2023-06-20 06:01:11', 2),
+(82, 3, 2, NULL, NULL, 'Hello customer', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:19:20', '2023-06-20 06:00:18', 2),
+(83, 1, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:19:55', '2023-06-20 05:21:08', 2),
+(84, 3, 2, NULL, NULL, 'Hello seller', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:20:23', '2023-06-20 06:00:18', 2),
+(85, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:40:01', '2023-06-20 06:00:18', 2),
+(86, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:40:11', '2023-06-20 06:00:18', 2),
+(87, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:40:48', '2023-06-20 06:01:11', 2),
+(88, NULL, 2, 1, NULL, 'Hi admin', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:19:40', '2023-06-20 06:01:11', 2),
+(89, NULL, 2, 1, NULL, 'Hello dear', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:06', '2023-06-20 06:01:11', 2),
+(90, NULL, 2, 1, NULL, 'How are you?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:21', '2023-06-20 06:01:11', 2),
+(91, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:21', '2023-06-20 06:01:11', 2),
+(92, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:31', '2023-06-20 06:01:11', 2),
+(93, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:35', '2023-06-20 06:01:11', 2),
+(94, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:42', '2023-06-20 06:01:11', 2),
+(95, NULL, 2, 1, NULL, 'Go', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:51', '2023-06-20 06:01:11', 2),
+(96, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:59', '2023-06-20 06:01:11', 2),
+(97, NULL, 1, 1, NULL, 'Hi rasel', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:32:32', '2023-06-20 05:53:13', 1),
+(98, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:35:43', '2023-06-20 06:01:11', 2),
+(99, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:43', '2023-06-20 06:01:11', 2),
+(100, NULL, 1, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:55', '2023-06-20 05:53:13', 1),
+(101, NULL, 2, 1, NULL, 'How are you?', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:16', '2023-06-20 06:01:11', 2),
+(102, NULL, 2, 1, NULL, 'I\'m also fine.\nyou?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:34', '2023-06-20 06:01:11', 2),
+(103, NULL, 2, 1, NULL, 'Same here.', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:49', '2023-06-20 06:01:11', 2),
+(104, NULL, 2, 1, NULL, 'Ok', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:47:57', '2023-06-20 06:01:11', 2),
+(105, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:34', '2023-06-20 06:01:11', 2),
+(106, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:44', '2023-06-20 06:01:11', 2),
+(107, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:51:07', '2023-06-20 06:00:09', 1),
+(108, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:52:13', '2023-06-20 06:00:18', 2),
+(109, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:52:22', '2023-06-20 06:00:18', 2),
+(110, NULL, 1, 1, NULL, 'Good', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:53:10', '2023-06-20 05:53:13', 1),
+(111, 3, 1, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 0, NULL, NULL, 1, '2023-06-20 05:59:04', '2023-06-20 05:59:04', 1),
+(112, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:59:27', '2023-06-20 06:00:18', 2),
+(113, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 06:00:03', '2023-06-20 06:00:18', 2),
+(114, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 06:00:13', '2023-06-20 06:00:18', 2),
+(115, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:00:58', '2023-06-20 06:01:11', 2),
+(116, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:01:08', '2023-06-20 06:01:11', 2);
 
 -- --------------------------------------------------------
 
@@ -656,6 +766,13 @@ CREATE TABLE `contacts` (
   `reply` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `mobile_number`, `subject`, `message`, `seen`, `feedback`, `created_at`, `updated_at`, `reply`) VALUES
+(1, 'Abu bakkar', 'anwar@gmail.com', '01700000000', 'Have a good day', 'Have a good day!', 1, '0', '2023-06-19 03:58:27', '2023-06-19 04:38:50', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -682,6 +799,13 @@ CREATE TABLE `coupons` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `limit` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `added_by`, `coupon_type`, `coupon_bearer`, `seller_id`, `customer_id`, `title`, `code`, `start_date`, `expire_date`, `min_purchase`, `max_discount`, `discount`, `discount_type`, `status`, `created_at`, `updated_at`, `limit`) VALUES
+(1, 'seller', 'discount_on_purchase', 'seller', 2, 0, 'Discount', 'aa2wdkryrk', '2023-06-19', '2023-06-22', '500.00', '100.00', '100.00', 'amount', 1, '2023-06-19 04:06:33', '2023-06-19 04:06:33', 10);
 
 -- --------------------------------------------------------
 
@@ -761,6 +885,13 @@ CREATE TABLE `deal_of_the_days` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `deal_of_the_days`
+--
+
+INSERT INTO `deal_of_the_days` (`id`, `title`, `product_id`, `discount`, `discount_type`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Flash Deal', 20, '0.00', 'flat', 0, '2023-06-19 05:19:53', '2023-06-19 05:19:53');
 
 -- --------------------------------------------------------
 
@@ -958,6 +1089,14 @@ CREATE TABLE `flash_deals` (
   `deal_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `flash_deals`
+--
+
+INSERT INTO `flash_deals` (`id`, `title`, `start_date`, `end_date`, `status`, `featured`, `background_color`, `text_color`, `banner`, `slug`, `created_at`, `updated_at`, `product_id`, `deal_type`) VALUES
+(1, 'Flash Deal', '2023-06-19', '2023-06-24', 0, 0, NULL, NULL, 'def.png', 'flash-deal', '2023-06-19 04:08:08', '2023-06-19 04:08:08', NULL, 'flash_deal'),
+(2, 'Bundles', '2023-06-19', '2023-06-23', 0, 0, NULL, NULL, 'def.png', 'bundles', '2023-06-19 05:22:16', '2023-06-19 05:22:16', NULL, 'feature_deal');
+
 -- --------------------------------------------------------
 
 --
@@ -973,6 +1112,15 @@ CREATE TABLE `flash_deal_products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flash_deal_products`
+--
+
+INSERT INTO `flash_deal_products` (`id`, `flash_deal_id`, `product_id`, `discount`, `discount_type`, `created_at`, `updated_at`) VALUES
+(1, 1, 10, '0.00', NULL, '2023-06-19 04:08:36', '2023-06-19 04:08:36'),
+(2, 1, 5, '0.00', NULL, '2023-06-19 04:08:45', '2023-06-19 04:08:45'),
+(6, 2, 20, '0.00', NULL, '2023-06-19 05:22:54', '2023-06-19 05:22:54');
 
 -- --------------------------------------------------------
 
@@ -1884,7 +2032,6 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`id`, `product_id`, `customer_id`, `delivery_man_id`, `order_id`, `comment`, `attachment`, `rating`, `status`, `is_saved`, `parent_id`, `reply_type`, `seller_id`, `created_at`, `updated_at`) VALUES
 (8, 15, 3, NULL, NULL, 'Good product', '[]', 4, 1, 0, NULL, NULL, NULL, '2023-06-17 05:30:46', '2023-06-17 05:30:46'),
 (9, 15, 1, NULL, NULL, 'Good', '[]', 4, 1, 0, NULL, NULL, NULL, '2023-06-17 05:30:46', '2023-06-17 05:30:46'),
-(10, 15, 3, NULL, NULL, 'Thank you so much.\r\nPlease stay with us.', NULL, 0, 1, 0, 8, 'reply', 2, '2023-06-17 06:50:57', '2023-06-17 06:50:57'),
 (13, 15, 1, NULL, NULL, 'Thank you', NULL, 0, 1, 0, 9, 'reply', 2, '2023-06-17 07:49:50', '2023-06-17 07:49:50');
 
 -- --------------------------------------------------------
@@ -1963,6 +2110,8 @@ CREATE TABLE `sellers` (
   `branch` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `account_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `holder_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trade_license` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `auth_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sales_commission_percentage` double(8,2) DEFAULT NULL,
   `gst` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1974,9 +2123,9 @@ CREATE TABLE `sellers` (
 -- Dumping data for table `sellers`
 --
 
-INSERT INTO `sellers` (`id`, `f_name`, `l_name`, `phone`, `image`, `email`, `password`, `status`, `remember_token`, `created_at`, `updated_at`, `bank_name`, `branch`, `account_no`, `holder_name`, `auth_token`, `sales_commission_percentage`, `gst`, `cm_firebase_token`, `pos_status`) VALUES
-(1, 'Rasel', 'Ahmed', '0170000000', '2023-06-05-647e41c29b3ba.png', 'sayemtutul1@gmail.com', '$2y$10$Hp.Nk2s592g9oDj3zZnW8uLHjuWZFpjAUwoDVxA4RqVcroaBIxh.2', 'approved', NULL, '2023-06-05 20:12:50', '2023-06-05 20:12:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(2, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-648050a3bce73.png', 'anwar@gmail.com', '$2y$10$2h7qnVnW/yZdbZOe13Lm9OSB5w1Cw00JcIqyih159oZcCBlvgbL6m', 'approved', NULL, '2023-06-07 09:40:51', '2023-06-07 09:41:47', 'DBBL Bank', 'Mohammadpur', '15454654654612', 'Md Anwar Hossain', NULL, NULL, NULL, NULL, 0);
+INSERT INTO `sellers` (`id`, `f_name`, `l_name`, `phone`, `image`, `email`, `password`, `status`, `remember_token`, `created_at`, `updated_at`, `bank_name`, `branch`, `account_no`, `holder_name`, `nid`, `trade_license`, `auth_token`, `sales_commission_percentage`, `gst`, `cm_firebase_token`, `pos_status`) VALUES
+(1, 'Rasel', 'Ahmed', '0170000000', '2023-06-05-647e41c29b3ba.png', 'sayemtutul1@gmail.com', '$2y$10$Hp.Nk2s592g9oDj3zZnW8uLHjuWZFpjAUwoDVxA4RqVcroaBIxh.2', 'approved', NULL, '2023-06-05 20:12:50', '2023-06-05 20:12:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(2, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-648050a3bce73.png', 'anwar@gmail.com', '$2y$10$2h7qnVnW/yZdbZOe13Lm9OSB5w1Cw00JcIqyih159oZcCBlvgbL6m', 'approved', NULL, '2023-06-07 09:40:51', '2023-06-19 02:13:34', 'DBBL Bank', 'Mohammadpur', '15454654654612', 'Md Anwar Hossain', '199665451234564', 'ASF564545445DFDF', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2260,11 +2409,11 @@ CREATE TABLE `users` (
   `name` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `f_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `l_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'def.png',
-  `email` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -2294,7 +2443,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `f_name`, `l_name`, `phone`, `image`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `street_address`, `country`, `city`, `zip`, `house_no`, `apartment_no`, `cm_firebase_token`, `is_active`, `payment_card_last_four`, `payment_card_brand`, `payment_card_fawry_token`, `login_medium`, `social_id`, `is_phone_verified`, `temporary_token`, `is_email_verified`, `wallet_balance`, `loyalty_point`) VALUES
 (1, 'walking customer', 'walking', 'customer', '000000000000', 'def.png', 'walking@customer.com', NULL, '', NULL, NULL, '2022-02-03 03:46:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(3, NULL, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-6480179862fd9.png', 'anwar@gmail.com', NULL, '$2y$10$IP22RUwkSCAVe3Cjp0g.UuQcFJt4lDcgwh2E.Qb7fdjYg2no2p7oy', NULL, '2023-06-07 05:36:43', '2023-06-07 05:37:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL);
+(3, NULL, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-6480179862fd9.png', 'anwar@gmail.com', NULL, '$2y$10$IP22RUwkSCAVe3Cjp0g.UuQcFJt4lDcgwh2E.Qb7fdjYg2no2p7oy', NULL, '2023-06-07 05:36:43', '2023-06-07 05:37:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
+(4, 'abu bakkar', NULL, NULL, NULL, 'def.png', NULL, NULL, NULL, NULL, '2023-06-19 01:59:46', '2023-06-19 01:59:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2934,7 +3084,7 @@ ALTER TABLE `category_shipping_costs`
 -- AUTO_INCREMENT for table `chattings`
 --
 ALTER TABLE `chattings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `colors`
@@ -2946,13 +3096,13 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `currencies`
@@ -2976,7 +3126,7 @@ ALTER TABLE `customer_wallet_histories`
 -- AUTO_INCREMENT for table `deal_of_the_days`
 --
 ALTER TABLE `deal_of_the_days`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `deliveryman_notifications`
@@ -3042,13 +3192,13 @@ ALTER TABLE `feature_deals`
 -- AUTO_INCREMENT for table `flash_deals`
 --
 ALTER TABLE `flash_deals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `flash_deal_products`
 --
 ALTER TABLE `flash_deal_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `help_topics`
@@ -3186,7 +3336,7 @@ ALTER TABLE `refund_transactions`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `search_functions`
@@ -3282,7 +3432,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `wallet_transactions`

@@ -11,6 +11,7 @@ class Chatting extends Model
         'user_id' => 'integer',
         'status' => 'integer',
         'seller_id' => 'integer',
+        'admin_id' => 'integer',
         'sent_by_customer' => 'integer',
         'sent_by_seller' => 'integer',
         'seen_by_customer' => 'integer',

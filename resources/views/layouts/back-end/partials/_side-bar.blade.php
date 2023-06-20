@@ -577,6 +577,18 @@
                                 </span>
                             </span>
                             </a>
+                        </li>                        
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/messages/chat/seller')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.messages.chat', ['type' => 'seller'])}}"
+                               title="Chat with Seller">
+                                <i class="tio-chat nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                <span class="position-relative">
+                                    Chat with Seller
+                                </span>
+                            </span>
+                            </a>
                         </li>
                         @endif
                         <!--support section ends here-->
