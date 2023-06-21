@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class WithdrawRequest extends Model
 {
 
+    protected $guarded = ['id'];
+
     protected $casts = [
         'amount' => 'float',
         'created_at' => 'datetime',

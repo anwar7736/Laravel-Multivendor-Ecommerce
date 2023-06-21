@@ -60,14 +60,6 @@
                                                 <h3 class="mb-2">{{\App\CPU\translate('Account_Number')}} : </h3>
                                                 <div>{{$data->account_no ?? 'No Data found'}}</div>
                                             </li>                                            
-                                            <li>
-                                                <h3 class="mb-2">NID : </h3>
-                                                <div>{{$data->nid ?? 'No Data found'}}</div>
-                                            </li>                                            
-                                            <li>
-                                                <h3 class="mb-2">Trade License : </h3>
-                                                <div>{{$data->trade_license ?? 'No Data found'}}</div>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>

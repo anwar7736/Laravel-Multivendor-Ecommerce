@@ -52,12 +52,24 @@
                                 <div class="flex-start">
                                     <h6>{{\App\CPU\translate('Phone')}} : </h6>
                                     <h6 class="mx-1">{{$shop->contact}}</h6>
-                                </div>
+                                </div>                                
+                                <div class="flex-start">
+                                    <h6>NID : </h6>
+                                    <h6 class="mx-1">{{$shop->nid}}</h6>
+                                </div>                           
+                                <div class="">
+                                    <h6>Trade License : </h6><br>
+                                    <div>
+                                        <img src="{{asset('storage/app/public/shop/trade_license/'.$shop->trade_license)}}"
+                                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                         class="border"
+                                         height="300" width="300" alt="">
+                                    </div>
+                                </div><br>
                                 <div class="flex-start">
                                     <h6>{{\App\CPU\translate('address')}} : </h6>
                                     <h6 class="mx-1">{{$shop->address}}</h6>
-                                </div>
-
+                                </div>     
                                 <div class="flex-start">
                                     <a class="btn btn--primary px-4" href="{{route('seller.shop.edit',[$shop->id])}}">{{\App\CPU\translate('edit')}}</a>
                                 </div>

@@ -41,6 +41,7 @@
                                     <th>{{\App\CPU\translate('SL')}}</th>
                                     <th>{{\App\CPU\translate('amount')}}</th>
                                     <th>{{\App\CPU\translate('request_time')}}</th>
+                                    <th>{{\App\CPU\translate('note')}}</th>
                                     <th>{{\App\CPU\translate('status')}}</th>
                                     <th class="text-center">{{\App\CPU\translate('Action')}}</th>
                                 </tr>
@@ -52,6 +53,7 @@
                                         <td>{{$withdraw_requests->firstitem()+$key}}</td>
                                         <td>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($withdraw_request['amount']))}}</td>
                                         <td>{{date("F jS, Y", strtotime($withdraw_request->created_at))}}</td>
+                                        <td>{!!$withdraw_request->transaction_note !!}</td>
                                         <td>
                                             @if($withdraw_request->approved==0)
                                                 <label class="badge badge-soft--primary">{{\App\CPU\translate('Pending')}}</label>
@@ -73,11 +75,12 @@
                                                     {{\App\CPU\translate('close')}}
                                                 </span>
                                             @endif
+                                            <button class="btn btn-danger btn-sm add_claim" data-id="{{ $withdraw_request->id }}" data-text="{{ $withdraw_request->transaction_note }}">Claim</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
-                                <td colspan="5" class="text-center">
+                                <td colspan="6" class="text-center">
                                     <img class="mb-3 w-160" src="{{asset('public/assets/back-end')}}/svg/illustrations/sorry.svg" alt="Image Description">
                                     <p class="mb-0">{{\App\CPU\translate('No data to show')}}</p>
                                 </td>
@@ -98,11 +101,49 @@
         </div>
 
     </div>
+    <div class="modal fade" id="claim-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content"
+                     style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Review Reply</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{route('seller.withdraw.request.claim')}}" method="POST">
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="id" id="request_id" value="">                          
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Add Claim Note
+                                    :</label>
+                                <textarea name="transaction_note" id="transaction_note" required class="form-control" rows="5" placeholder="Write something..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{\App\CPU\translate('Close')}}</button>
+                                <button type="submit"
+                                class="btn btn--primary">{{\App\CPU\translate('Add')}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 @endsection
 
 
 @push('script_2')
   <script>
+    $(document).on('click', 'button.add_claim', function(e){
+        let id = $(this).attr('data-id');
+        let note = $(this).attr('data-text');
+        $(document).find('input#request_id').val(id);
+        $(document).find('#transaction_note').val(note);
+        $('div#claim-modal').modal('show');
+    });
+    
       function status_filter(type) {
           $.ajaxSetup({
               headers: {

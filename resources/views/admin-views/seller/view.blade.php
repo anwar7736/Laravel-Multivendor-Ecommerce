@@ -267,7 +267,20 @@
                             <div class="flex-start">
                                 <div><h5>{{\App\CPU\translate('Phone')}} : </h5></div>
                                 <div class="mx-1"><h5>{{$seller->shop->contact}}</h5></div>
-                            </div>
+                            </div>                            
+                            <div class="flex-start">
+                                <div><h5>NID : </h5></div>
+                                <div class="mx-1"><h5>{{$seller->shop->nid}}</h5></div>
+                            </div>                            
+                            <div class="">
+                                <div><h5>Trade License : </h5></div>
+                                <div>
+                                    <img src="{{asset('storage/app/public/shop/trade_license/'.$seller->shop->trade_license)}}"
+                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                        class="border"
+                                        height="300" width="300" alt="">
+                                </div>
+                            </div><br>
                             <div class="flex-start">
                                 <div><h5>{{\App\CPU\translate('address')}} : </h5></div>
                                 <div class="mx-1"><h5>{{$seller->shop->address}}</h5></div>

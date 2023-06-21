@@ -54,12 +54,19 @@ class ShopController extends Controller
         $shop->name = $request->name;
         $shop->address = $request->address;
         $shop->contact = $request->contact;
+        $shop->nid = $request->nid;
         if ($request->image) {
             $shop->image = ImageManager::update('shop/', $shop->image, 'png', $request->file('image'));
         }
+
         if ($request->banner) {
             $shop->banner = ImageManager::update('shop/banner/', $shop->banner, 'png', $request->file('banner'));
+        }        
+        
+        if ($request->trade_license) {
+            $shop->trade_license = ImageManager::update('shop/trade_license/', $shop->trade_license, 'png', $request->file('trade_license'));
         }
+
         $shop->save();
 
         Toastr::info('Shop updated successfully!');

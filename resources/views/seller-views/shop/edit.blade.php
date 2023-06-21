@@ -43,6 +43,11 @@
                                     <label for="name" class="title-color">{{\App\CPU\translate('Contact')}} <span class="text-info">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</span></label>
                                     <input type="number" name="contact" value="{{$shop->contact}}" class="form-control" id="name"
                                             required>
+                                </div>                                
+                                <div class="form-group">
+                                    <label for="nid" class="title-color">Shop NID : <span class="text-danger">*</span></label>
+                                    <input type="number" name="nid" value="{{$shop->nid}}" class="form-control" id="nid"
+                                            required>
                                 </div>
                                 <div class="form-group">
                                     <label for="address" class="title-color">{{\App\CPU\translate('Address')}} <span class="text-danger">*</span></label>
@@ -84,6 +89,26 @@
                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                          src="{{asset('storage/app/public/shop/banner/'.$shop->banner)}}" alt="Product thumbnail"/>
                                 </div>
+                            </div>                            
+                            <div class="col-md-6 mb-4 mt-2">
+                                <div class="form-group">
+                                    <div class="flex-start">
+                                        <label for="name" class="title-color">{{\App\CPU\translate('Upload')}} Trade License </label>
+                                        <div class="mx-1" for="ratio">
+                                            <span class="text-info">{{\App\CPU\translate('Ratio')}} : ( 6:1 )</span>
+                                        </div>
+                                    </div>
+                                    <div class="custom-file text-left">
+                                        <input type="file" name="trade_license" id="TradeLicenseUpload" class="custom-file-input"
+                                               accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                                        <label class="custom-file-label" for="TradeLicenseUpload">{{\App\CPU\translate('choose')}} Trade License</label>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <img class="upload-img-view" id="viewerTradeLicense"
+                                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                         src="{{asset('storage/app/public/shop/trade_license/'.$shop->trade_license)}}" alt="Product thumbnail"/>
+                                </div>
                             </div>
                         </div>
 
@@ -124,6 +149,18 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+        }        
+        
+        function readTradeLicenseURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewerTradeLicense').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
         $("#customFileUpload").change(function () {
@@ -132,7 +169,12 @@
 
         $("#BannerUpload").change(function () {
             readBannerURL(this);
+        });        
+        
+        $("#TradeLicenseUpload").change(function () {
+            readTradeLicenseURL(this);
         });
+
    </script>
 
 @endpush

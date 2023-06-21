@@ -217,6 +217,7 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
 
         Route::group(['prefix' => 'withdraw', 'as' => 'withdraw.'], function () {
             Route::post('request', 'WithdrawController@w_request')->name('request');
+            Route::post('add-request-claim', 'WithdrawController@add_claim')->name('request.claim');
             Route::delete('close/{id}', 'WithdrawController@close_request')->name('close');
         });
 

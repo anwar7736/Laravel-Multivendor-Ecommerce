@@ -76,8 +76,6 @@ class ProfileController extends Controller
         $bank->branch = $request->branch;
         $bank->holder_name = $request->holder_name;
         $bank->account_no = $request->account_no;
-        $bank->nid = $request->nid;
-        $bank->trade_license = $request->trade_license;
         $bank->save();
         Toastr::success('Bank Info updated');
         return redirect()->route('seller.profile.view');

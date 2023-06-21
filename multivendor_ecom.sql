@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2023 at 02:03 PM
+-- Generation Time: Jun 21, 2023 at 09:27 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `phone`, `admin_role_id`, `image`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'sayem', '01615597820', 1, 'def.png', 'sayemtutul@gmail.com', NULL, '$2y$10$cW1ot5l4/BitJzly7eLbC.BPQkf8yiFYtVZ.UgiBH8U05Dr2.v5Rm', 'ZGx34BYQzHWMJ96TzqDcUfrbg1jEePCSJpYBcqQ5Y1gSLgCNcks2rKcra3AB', '2023-06-06 01:47:48', '2023-06-06 01:47:48', 1);
+(1, 'sayem', '01615597820', 1, 'def.png', 'sayemtutul@gmail.com', NULL, '$2y$10$cW1ot5l4/BitJzly7eLbC.BPQkf8yiFYtVZ.UgiBH8U05Dr2.v5Rm', 'hrlYh3151T37JtfNW1d96cgfdAxgKIHoyV3bNjBgsggZLvuQ3tjyvbt82Umg', '2023-06-06 01:47:48', '2023-06-06 01:47:48', 1);
 
 -- --------------------------------------------------------
 
@@ -545,44 +545,46 @@ INSERT INTO `chattings` (`id`, `user_id`, `seller_id`, `admin_id`, `delivery_man
 (74, 3, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:43:43', '2023-06-20 06:00:18', 2),
 (75, 3, 2, NULL, NULL, 'Hi there!', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:47:23', '2023-06-20 06:00:18', 2),
 (76, 3, 2, NULL, NULL, 'Hello there!', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 02:47:37', '2023-06-20 06:00:18', 2),
-(77, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 0, 1, 1, NULL, 1, '2023-06-20 01:02:27', '2023-06-20 06:01:11', 2),
+(77, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 0, 1, 1, NULL, 1, '2023-06-20 01:02:27', '2023-06-21 00:04:18', 2),
 (78, 1, 2, NULL, NULL, 'OK', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:11:24', '2023-06-20 05:21:08', 2),
-(81, NULL, 2, 1, NULL, 'Hello admin', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:18:46', '2023-06-20 06:01:11', 2),
+(81, NULL, 2, 1, NULL, 'Hello admin', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:18:46', '2023-06-21 00:04:18', 2),
 (82, 3, 2, NULL, NULL, 'Hello customer', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:19:20', '2023-06-20 06:00:18', 2),
 (83, 1, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:19:55', '2023-06-20 05:21:08', 2),
 (84, 3, 2, NULL, NULL, 'Hello seller', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:20:23', '2023-06-20 06:00:18', 2),
 (85, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:40:01', '2023-06-20 06:00:18', 2),
 (86, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 04:40:11', '2023-06-20 06:00:18', 2),
-(87, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:40:48', '2023-06-20 06:01:11', 2),
-(88, NULL, 2, 1, NULL, 'Hi admin', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:19:40', '2023-06-20 06:01:11', 2),
-(89, NULL, 2, 1, NULL, 'Hello dear', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:06', '2023-06-20 06:01:11', 2),
-(90, NULL, 2, 1, NULL, 'How are you?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:21', '2023-06-20 06:01:11', 2),
-(91, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:21', '2023-06-20 06:01:11', 2),
-(92, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:31', '2023-06-20 06:01:11', 2),
-(93, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:35', '2023-06-20 06:01:11', 2),
-(94, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:42', '2023-06-20 06:01:11', 2),
-(95, NULL, 2, 1, NULL, 'Go', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:51', '2023-06-20 06:01:11', 2),
-(96, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:59', '2023-06-20 06:01:11', 2),
-(97, NULL, 1, 1, NULL, 'Hi rasel', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:32:32', '2023-06-20 05:53:13', 1),
-(98, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:35:43', '2023-06-20 06:01:11', 2),
-(99, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:43', '2023-06-20 06:01:11', 2),
-(100, NULL, 1, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:55', '2023-06-20 05:53:13', 1),
-(101, NULL, 2, 1, NULL, 'How are you?', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:16', '2023-06-20 06:01:11', 2),
-(102, NULL, 2, 1, NULL, 'I\'m also fine.\nyou?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:34', '2023-06-20 06:01:11', 2),
-(103, NULL, 2, 1, NULL, 'Same here.', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:49', '2023-06-20 06:01:11', 2),
-(104, NULL, 2, 1, NULL, 'Ok', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:47:57', '2023-06-20 06:01:11', 2),
-(105, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:34', '2023-06-20 06:01:11', 2),
-(106, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:44', '2023-06-20 06:01:11', 2),
+(87, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 04:40:48', '2023-06-21 00:04:18', 2),
+(88, NULL, 2, 1, NULL, 'Hi admin', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:19:40', '2023-06-21 00:04:18', 2),
+(89, NULL, 2, 1, NULL, 'Hello dear', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:06', '2023-06-21 00:04:18', 2),
+(90, NULL, 2, 1, NULL, 'How are you?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:20:21', '2023-06-21 00:04:18', 2),
+(91, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:21', '2023-06-21 00:04:18', 2),
+(92, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:21:31', '2023-06-21 00:04:18', 2),
+(93, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:35', '2023-06-21 00:04:18', 2),
+(94, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:42', '2023-06-21 00:04:18', 2),
+(95, NULL, 2, 1, NULL, 'Go', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:51', '2023-06-21 00:04:18', 2),
+(96, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:24:59', '2023-06-21 00:04:18', 2),
+(97, NULL, 1, 1, NULL, 'Hi rasel', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:32:32', '2023-06-21 00:03:39', 1),
+(98, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:35:43', '2023-06-21 00:04:18', 2),
+(99, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:43', '2023-06-21 00:04:18', 2),
+(100, NULL, 1, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:38:55', '2023-06-21 00:03:39', 1),
+(101, NULL, 2, 1, NULL, 'How are you?', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:16', '2023-06-21 00:04:18', 2),
+(102, NULL, 2, 1, NULL, 'I\'m also fine.\nyou?', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:34', '2023-06-21 00:04:18', 2),
+(103, NULL, 2, 1, NULL, 'Same here.', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:39:49', '2023-06-21 00:04:18', 2),
+(104, NULL, 2, 1, NULL, 'Ok', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:47:57', '2023-06-21 00:04:18', 2),
+(105, NULL, 2, 1, NULL, 'Hi', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:34', '2023-06-21 00:04:18', 2),
+(106, NULL, 2, 1, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:50:44', '2023-06-21 00:04:18', 2),
 (107, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:51:07', '2023-06-20 06:00:09', 1),
 (108, 3, 2, NULL, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:52:13', '2023-06-20 06:00:18', 2),
 (109, 3, 2, NULL, NULL, 'Hello', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:52:22', '2023-06-20 06:00:18', 2),
-(110, NULL, 1, 1, NULL, 'Good', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:53:10', '2023-06-20 05:53:13', 1),
+(110, NULL, 1, 1, NULL, 'Good', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 05:53:10', '2023-06-21 00:03:39', 1),
 (111, 3, 1, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 0, NULL, NULL, 1, '2023-06-20 05:59:04', '2023-06-20 05:59:04', 1),
 (112, 3, 2, NULL, NULL, 'OK', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 05:59:27', '2023-06-20 06:00:18', 2),
 (113, 3, 2, NULL, NULL, 'Hi', 1, 0, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 06:00:03', '2023-06-20 06:00:18', 2),
 (114, 3, 2, NULL, NULL, 'Hello', 0, 1, NULL, NULL, 1, 1, NULL, NULL, 1, '2023-06-20 06:00:13', '2023-06-20 06:00:18', 2),
-(115, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:00:58', '2023-06-20 06:01:11', 2),
-(116, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:01:08', '2023-06-20 06:01:11', 2);
+(115, NULL, 2, 1, NULL, 'Hi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:00:58', '2023-06-21 00:04:18', 2),
+(116, NULL, 2, 1, NULL, 'Hello', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-20 06:01:08', '2023-06-21 00:04:18', 2),
+(117, NULL, 2, 1, NULL, 'Hi Anwar', 0, 0, 1, NULL, 1, 1, 1, NULL, 1, '2023-06-21 00:03:53', '2023-06-21 00:04:18', 2),
+(118, NULL, 2, 1, NULL, 'Hello sayem vi', 0, 1, NULL, NULL, 1, 1, 1, NULL, 1, '2023-06-21 00:04:15', '2023-06-21 00:04:18', 2);
 
 -- --------------------------------------------------------
 
@@ -2110,8 +2112,6 @@ CREATE TABLE `sellers` (
   `branch` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `account_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `holder_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trade_license` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `auth_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sales_commission_percentage` double(8,2) DEFAULT NULL,
   `gst` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2123,9 +2123,9 @@ CREATE TABLE `sellers` (
 -- Dumping data for table `sellers`
 --
 
-INSERT INTO `sellers` (`id`, `f_name`, `l_name`, `phone`, `image`, `email`, `password`, `status`, `remember_token`, `created_at`, `updated_at`, `bank_name`, `branch`, `account_no`, `holder_name`, `nid`, `trade_license`, `auth_token`, `sales_commission_percentage`, `gst`, `cm_firebase_token`, `pos_status`) VALUES
-(1, 'Rasel', 'Ahmed', '0170000000', '2023-06-05-647e41c29b3ba.png', 'sayemtutul1@gmail.com', '$2y$10$Hp.Nk2s592g9oDj3zZnW8uLHjuWZFpjAUwoDVxA4RqVcroaBIxh.2', 'approved', NULL, '2023-06-05 20:12:50', '2023-06-05 20:12:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(2, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-648050a3bce73.png', 'anwar@gmail.com', '$2y$10$2h7qnVnW/yZdbZOe13Lm9OSB5w1Cw00JcIqyih159oZcCBlvgbL6m', 'approved', NULL, '2023-06-07 09:40:51', '2023-06-19 02:13:34', 'DBBL Bank', 'Mohammadpur', '15454654654612', 'Md Anwar Hossain', '199665451234564', 'ASF564545445DFDF', NULL, NULL, NULL, NULL, 0);
+INSERT INTO `sellers` (`id`, `f_name`, `l_name`, `phone`, `image`, `email`, `password`, `status`, `remember_token`, `created_at`, `updated_at`, `bank_name`, `branch`, `account_no`, `holder_name`, `auth_token`, `sales_commission_percentage`, `gst`, `cm_firebase_token`, `pos_status`) VALUES
+(1, 'Rasel', 'Ahmed', '0170000000', '2023-06-05-647e41c29b3ba.png', 'sayemtutul1@gmail.com', '$2y$10$Hp.Nk2s592g9oDj3zZnW8uLHjuWZFpjAUwoDVxA4RqVcroaBIxh.2', 'approved', NULL, '2023-06-05 20:12:50', '2023-06-05 20:12:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(2, 'Md Anwar', 'Hossain', '01794030592', '2023-06-07-648050a3bce73.png', 'anwar@gmail.com', '$2y$10$2h7qnVnW/yZdbZOe13Lm9OSB5w1Cw00JcIqyih159oZcCBlvgbL6m', 'approved', NULL, '2023-06-07 09:40:51', '2023-06-19 02:13:34', 'DBBL Bank', 'Mohammadpur', '15454654654612', 'Md Anwar Hossain', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2153,7 +2153,7 @@ CREATE TABLE `seller_wallets` (
 
 INSERT INTO `seller_wallets` (`id`, `seller_id`, `total_earning`, `withdrawn`, `created_at`, `updated_at`, `commission_given`, `pending_withdraw`, `delivery_charge_earned`, `collected_cash`, `total_tax_collected`) VALUES
 (1, 1, 0, 0, '2023-06-05 20:12:50', '2023-06-05 20:12:50', 0.00, 0.00, 0.00, 0.00, 0.00),
-(2, 2, 0, 228280, '2023-06-07 09:40:51', '2023-06-17 05:40:00', 0.00, 100.00, 0.00, 0.00, 0.00);
+(2, 2, 0, 228380, '2023-06-07 09:40:51', '2023-06-20 23:59:18', 0.00, 0.00, 0.00, 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -2255,18 +2255,20 @@ CREATE TABLE `shops` (
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'def.png',
+  `banner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trade_license` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `banner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `shops`
 --
 
-INSERT INTO `shops` (`id`, `seller_id`, `name`, `address`, `contact`, `image`, `created_at`, `updated_at`, `banner`) VALUES
-(1, 1, 'Deluxe Online', 'mohammadpur', '0170000000', '2023-06-05-647e41c2af6ab.png', '2023-06-05 20:12:50', '2023-06-05 20:12:50', '2023-06-05-647e41c2afa13.png'),
-(2, 2, 'Our Shop BD', 'Y=15 momhadpur', '01794030592', '2023-06-07-648050a3d2d97.png', '2023-06-07 09:40:51', '2023-06-07 09:40:51', '2023-06-07-648050a3d3773.png');
+INSERT INTO `shops` (`id`, `seller_id`, `name`, `address`, `contact`, `image`, `banner`, `nid`, `trade_license`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Deluxe Online', 'mohammadpur', '0170000000', '2023-06-05-647e41c2af6ab.png', '2023-06-05-647e41c2afa13.png', NULL, NULL, '2023-06-05 20:12:50', '2023-06-05 20:12:50'),
+(2, 2, 'Our Shop BD', 'Y=15 momhadpur', '01794030592', '2023-06-07-648050a3d2d97.png', '2023-06-07-648050a3d3773.png', '1996146464545451', '2023-06-21-64929eca7b898.png', '2023-06-07 09:40:51', '2023-06-21 00:55:06');
 
 -- --------------------------------------------------------
 
@@ -2504,8 +2506,8 @@ CREATE TABLE `withdraw_requests` (
 
 INSERT INTO `withdraw_requests` (`id`, `seller_id`, `delivery_man_id`, `admin_id`, `amount`, `transaction_note`, `approved`, `created_at`, `updated_at`) VALUES
 (3, 2, NULL, 1, '114140', NULL, 1, '2023-06-17 10:57:43', '2023-06-17 05:00:56'),
-(4, 2, NULL, NULL, '114140', NULL, 1, '2023-06-17 05:05:46', '2023-06-17 05:06:55'),
-(5, 2, NULL, NULL, '100', NULL, 0, '2023-06-17 05:40:00', '2023-06-17 05:40:00');
+(4, 2, NULL, NULL, '114140', NULL, 1, '2023-06-17 05:05:46', '2023-06-20 23:57:18'),
+(5, 2, NULL, NULL, '100', 'Thanks, I have received this payment', 1, '2023-06-17 05:40:00', '2023-06-21 00:00:39');
 
 --
 -- Indexes for dumped tables
@@ -3084,7 +3086,7 @@ ALTER TABLE `category_shipping_costs`
 -- AUTO_INCREMENT for table `chattings`
 --
 ALTER TABLE `chattings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `colors`

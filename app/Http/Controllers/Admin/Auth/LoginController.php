@@ -49,11 +49,11 @@ class LoginController extends Controller
     public function submit(Request $request)
     {
 
-        //For testing login
-        if (auth('admin')->attempt(['email' => "sayemtutul@gmail.com", 'password' => "Fadmin321@"], false)) {
-            return redirect()->route('admin.dashboard');
-        }
-        //
+        // //For testing login
+        // if (auth('admin')->attempt(['email' => "sayemtutul@gmail.com", 'password' => "Fadmin321@"], false)) {
+        //     return redirect()->route('admin.dashboard');
+        // }
+        // //
 
         $request->validate([
             'email' => 'required|email',

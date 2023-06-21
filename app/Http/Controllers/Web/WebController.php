@@ -1041,7 +1041,7 @@ class WebController extends Controller
     public function contact_store(Request $request)
     {
         //recaptcha validation
-        /*$recaptcha = Helpers::get_business_settings('recaptcha');
+        $recaptcha = Helpers::get_business_settings('recaptcha');
         if (isset($recaptcha) && $recaptcha['status'] == 1) {
 
             try {
@@ -1068,7 +1068,7 @@ class WebController extends Controller
                 Session::forget('default_captcha_code');
                 return back()->withErrors(\App\CPU\translate('Captcha Failed'))->withInput($request->input());
             }
-        }*/
+        }
 
         $request->validate([
             'mobile_number' => 'required',

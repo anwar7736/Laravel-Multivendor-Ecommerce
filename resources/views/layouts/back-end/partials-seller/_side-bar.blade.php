@@ -397,7 +397,7 @@
                                href="{{route('seller.contact')}}">
                                 <i class="tio-home-vs-1-outlined nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{\App\CPU\translate('Contact To Admin')}}
+                                    {{\App\CPU\translate('Contact With Admin')}}
                                 </span>
                             </a>
                         </li>

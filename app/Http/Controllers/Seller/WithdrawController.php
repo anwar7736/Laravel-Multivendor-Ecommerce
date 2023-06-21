@@ -87,4 +87,14 @@ class WithdrawController extends Controller
 
         return view('seller-views.withdraw.list', compact('withdraw_requests'));
     }
+
+    public function add_claim(Request $request)
+    {
+        $withdraw = WithdrawRequest::find($request->id);
+
+        $withdraw->update(['transaction_note'=>$request->transaction_note]);
+
+        Toastr::success('Withdraw Request Claim Added!');
+        return back();
+    }
 }

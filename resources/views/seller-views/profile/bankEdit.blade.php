@@ -58,18 +58,6 @@
                                                class="form-control" id="account_no"
                                                required>
                                     </div>                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label for="nid" class="title-color">NID<span class="text-danger">*</span></label>
-                                        <input type="number" name="nid" value="{{$data->nid}}"
-                                               class="form-control" id="nid"
-                                               required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="trade_license" class="title-color">Trade License<span class="text-danger">*</span></label>
-                                        <input type="text" name="trade_license" value="{{$data->trade_license}}"
-                                               class="form-control" id="trade_license"
-                                               required>
-                                    </div>
 
                                 </div>
 
